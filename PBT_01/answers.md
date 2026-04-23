@@ -12,3 +12,30 @@
 5 Layout & Paint (Render): Sau khi có đủ cấu trúc và định dạng (và thực thi xong JS nếu có), trình duyệt tính toán vị trí các phần tử (Layout) và vẽ các pixel lên màn hình (Paint) để hiển thị giao diện Shopee cho người dùng.
 
 #### Nguồn tham chiếu: File 01_introduction_html_universe.md - Mục 2 (Big Picture) và Mục 3 (Core Technical Truth).
+
+### Trong DevTools của Chrome, tab Network cho thấy thông tin gì? Hãy mở một trang web bất kỳ, chụp screenshot tab Network và đánh dấu (vẽ mũi tên/khoanh tròn) vào:
+#### 1. Tab Network trong DevTools cho thấy thông tin gì?
+​Dựa vào phần 2. Big Picture và 3. Core Technical Truth trong tài liệu, tab Network là công cụ dùng để giám sát quá trình giao tiếp giữa Client (Browser) và Server. Cụ thể, nó hiển thị:
+​Danh sách các file/tài nguyên mà trình duyệt tải về (HTML, CSS, JS, hình ảnh...).
+​HTTP Methods (GET, POST...) được sử dụng cho từng yêu cầu.
+​Status Code (Trạng thái phản hồi từ server như 200, 404, 500...).
+​Thời gian tải (Timing) của từng file và tổng thời gian tải toàn bộ trang web.
+​Kích thước (Size) của các tài nguyên được truyền tải qua internet.
+#### 2 ​Hướng dẫn xác định các thành phần trên giao diện
+
+​Cách tìm các thông tin theo yêu cầu:
+
+Dưới đây là ảnh chụp màn hình tab Network:
+
+![Screenshot Tab Network](screenshots/image_f9e008.png)
+
+**Các thông số đã đánh dấu:**
+- **Status Code:** 200 (ở dòng đầu tiên).
+- **Tổng thời gian load trang:** Finish 23.96 s.
+- **Request file CSS:** Dòng bundle... có type là stylesheet.
+
+#### Nguồn tham chiếu
+​Tên file: 01_introduction_html_universe.md
+​Phần trong tài liệu: * Mục 2. Big Picture — Web hoạt động như thế nào?: Giải thích về luồng Request - Response giữa Browser và Server.
+​Mục 3. Core Technical Truth — HTTP: Giải thích về các loại Method và Status Codes (200, 404...).
+​Mục 6. Hands-on Practice: Hướng dẫn cách mở DevTools (F12) để quan sát thực tế.
