@@ -1,6 +1,6 @@
 # PHẦN A
 ## CÂU A1(5đ) — HTTP & Browser
-### Khi bạn gõ https://shopee.vn vào trình duyệt và nhấn Enter, hãy liệt kê đúng thứ tự ít nhất 5 bước xảy ra (từ DNS lookup đến render).
+### Khi bạn gõ https://shopee.vn vào trình duyệt và nhấn Enter, hãy liệt kê đúng thứ tự ít nhất 5 bước xảy ra (từ DNS lookup đến render) là:
 1 Gửi HTTP Request (GET): Trình duyệt (Client) gửi một yêu cầu GET / thông qua giao thức HTTP đến máy chủ (Server) của Shopee để xin file index.html.
 
 2 Server phản hồi (200 OK): Máy chủ tìm file index.html và gửi ngược lại cho trình duyệt một mã phản hồi 200 OK kèm theo nội dung file HTML.
@@ -14,14 +14,14 @@
 #### Nguồn tham chiếu: File 01_introduction_html_universe.md - Mục 2 (Big Picture) và Mục 3 (Core Technical Truth).
 
 ### Trong DevTools của Chrome, tab Network cho thấy thông tin gì? Hãy mở một trang web bất kỳ, chụp screenshot tab Network và đánh dấu (vẽ mũi tên/khoanh tròn) vào:
-#### 1. Tab Network trong DevTools cho thấy thông tin gì?
+#### 1. Tab Network trong DevTools cho thấy thông tin là:
 ​Dựa vào phần 2. Big Picture và 3. Core Technical Truth trong tài liệu, tab Network là công cụ dùng để giám sát quá trình giao tiếp giữa Client (Browser) và Server. Cụ thể, nó hiển thị:
 ​Danh sách các file/tài nguyên mà trình duyệt tải về (HTML, CSS, JS, hình ảnh...).
 ​HTTP Methods (GET, POST...) được sử dụng cho từng yêu cầu.
 ​Status Code (Trạng thái phản hồi từ server như 200, 404, 500...).
 ​Thời gian tải (Timing) của từng file và tổng thời gian tải toàn bộ trang web.
 ​Kích thước (Size) của các tài nguyên được truyền tải qua internet.
-#### 2 ​Hướng dẫn xác định các thành phần trên giao diện
+#### 2 ​Hướng dẫn xác định các thành phần trên giao diện là:
 ​Cách tìm các thông tin theo yêu cầu:
 
 Dưới đây là ảnh chụp màn hình tab Network:
@@ -34,7 +34,7 @@ Dưới đây là ảnh chụp màn hình tab Network:
 - **Tổng thời gian load trang:** Finish 23.96 s.
 - **Request file CSS:** Dòng bundle... có type là stylesheet.
 
-#### Nguồn tham chiếu
+#### Nguồn tham chiếu là:
 ​Tên file: 01_introduction_html_universe.md
 ​Phần trong tài liệu: * Mục 2. Big Picture — Web hoạt động như thế nào?: Giải thích về luồng Request - Response giữa Browser và Server.
 ​Mục 3. Core Technical Truth — HTTP: Giải thích về các loại Method và Status Codes (200, 404...).
@@ -51,7 +51,7 @@ Dưới đây là ảnh chụp màn hình tab Network:
 - Thẻ `<article>`: Cho biết đây là một nội dung độc lập (một thực thể sản phẩm), rất có lợi khi Google hiển thị kết quả tìm kiếm dưới dạng "Rich Snippets".
 
 - Thẻ ul và li: Giúp cấu trúc danh sách menu rõ ràng hơn thay vì chỉ là các thẻ div rời rạc.
-### 4 lỗi và sửa lại là
+### 4 lỗi và sửa lại là:
 - Lỗi 1	`<div class="header">`	Không xác định được phần đầu của trang web.	Thay bằng thẻ `<header>`.
 - Lỗi 2	`<div class="menu">`	Trình duyệt không biết đây là khu vực điều hướng chính.	Thay bằng thẻ `<nav>`.
 - Lỗi 3	`<div class="title">`	Tiêu đề sản phẩm không được phân cấp, Google không biết đây là từ khóa quan trọng.	Thay bằng thẻ `<h1>` (nếu là tiêu đề trang) hoặc `<h2>`.
@@ -60,7 +60,7 @@ Dưới đây là ảnh chụp màn hình tab Network:
 ## Câu A3 (5đ) — Block vs Inline
 ### Không chạy code, hãy vẽ tay (hoặc mô tả bằng text art) kết quả hiển thị của đoạn HTML sau. Giải thích tại sao.
 
-#### Mô tả text art
+#### Mô tả text art là:
 Hộp 1
 <br>
 Text AText B
@@ -71,7 +71,7 @@ Text C**Text D**
 <br>
 Hộp 3
 
-#### Về giải thích
+#### Về giải thích là:
 - Nhóm 1: Thẻ Block-level (`<div>`)
 Đặc điểm: Luôn bắt đầu trên một dòng mới và chiếm trọn vẹn chiều ngang của trang web (giống như một viên gạch xây tường).
 
@@ -92,7 +92,7 @@ Text C và Text D: Tương tự, chúng nằm sát nhau trên cùng hàng 4 (nga
 ## Câu A4 (5đ) — Table
 ### Đọc chương 05. Giải thích sự khác nhau giữa `<thead>`, `<tbody>`, `<tfoot>`. Tại sao KHÔNG NÊN dùng table để tạo layout trang web? (Ghi rõ ít nhất 3 lý do)
 
-#### 1. Sự khác nhau giữa `<thead>`, `<tbody>` và `<tfoot>`
+#### 1. Sự khác nhau giữa `<thead>`, `<tbody>` và `<tfoot>` là:
 
 Việc phân chia bảng thành 3 phần giúp trình duyệt và các thiết bị hỗ trợ hiểu rõ cấu trúc dữ liệu:
 
@@ -109,16 +109,18 @@ Việc phân chia bảng thành 3 phần giúp trình duyệt và các thiết b
 
 #### 2. Tại sao KHÔNG NÊN dùng table để tạo layout trang web?
 
-Dưới đây là 3 lý do quan trọng khiến việc dùng `<table>` để dàn trang là một sai lầm:
+**Dưới đây là 3 lý do quan trọng khiến việc dùng `<table>` để dàn trang là một sai lầm:**
 
-1.  **Sai mục đích ngữ nghĩa (Semantics):** Thẻ `<table>` được tạo ra chỉ để hiển thị dữ liệu dạng bảng (hàng và cột có ý nghĩa). Việc dùng nó cho bố cục (layout) sẽ làm các công cụ tìm kiếm (SEO) và trình đọc màn hình bị rối, không hiểu được nội dung chính của trang.
-2.  **Tốc độ tải trang chậm (Performance):** Trình duyệt thường phải đợi tải xong toàn bộ code của bảng mới bắt đầu tính toán kích thước và hiển thị. Nếu layout trang nằm trong một table lớn, người dùng sẽ phải chờ đợi lâu hơn để thấy nội dung hiện ra.
-3.  **Khó làm Web thích ứng (Responsive):** Bảng có cấu trúc rất cứng nhắc. Việc biến một layout table từ 3 cột trên máy tính thành 1 cột trên điện thoại là cực kỳ khó khăn so với việc sử dụng các công cụ hiện đại như **CSS Flexbox** hoặc **Grid**.
-
-
+1.  **Sai mục đích ngữ nghĩa (Semantics) là:** Thẻ `<table>` được tạo ra chỉ để hiển thị dữ liệu dạng bảng (hàng và cột có ý nghĩa). Việc dùng nó cho bố cục (layout) sẽ làm các công cụ tìm kiếm (SEO) và trình đọc màn hình bị rối, không hiểu được nội dung chính của trang.
+2.  **Tốc độ tải trang chậm (Performance) là:** Trình duyệt thường phải đợi tải xong toàn bộ code của bảng mới bắt đầu tính toán kích thước và hiển thị. Nếu layout trang nằm trong một table lớn, người dùng sẽ phải chờ đợi lâu hơn để thấy nội dung hiện ra.
+3.  **Khó làm Web thích ứng (Responsive) là:** Bảng có cấu trúc rất cứng nhắc. Việc biến một layout table từ 3 cột trên máy tính thành 1 cột trên điện thoại là cực kỳ khó khăn so với việc sử dụng các công cụ hiện đại như **CSS Flexbox** hoặc **Grid**.
 
 
-# Phần B Câu 3 danh sách lỗi trong file debug.html
+
+
+# Phần B Bài 3 (15đ) — Debug HTML
+
+**danh sách lỗi trong file debug.html là:**
 
 - Lỗi 1: Dòng 1 — Khai báo <!DOCTYPE> thiếu "html" — Sửa thành: !DOCTYPE html
 - Lỗi 2: Dòng 2 — Thẻ `<title> thiếu thẻ đóng `</title>` — Sửa thành: `<title>` Trang web `</title>`
@@ -133,8 +135,16 @@ Dưới đây là 3 lý do quan trọng khiến việc dùng `<table>` để dà
 - Lỗi 11: Dòng 38 — Thiếu thẻ đóng `</html> ở cuối trang — Sửa thành: Thêm `</html> vào dòng cuối cùng
 - Lỗi 12: Dòng 14 & 23 — Thứ tự tiêu đề không hợp lý (Nhảy từ `<h1>` sang `<h3>`) — Sửa thành: Đổi các thẻ `<h3>` thành `<h2>` để đảm bảo tính phân cấp (Hierarchy).
 
+# Phần B Bài 4 (15đ) — Phân tích trang web thật
+
+
+
+
 # PHẦN C— SUY LUẬN (20 điểm)
 ## Câu C1 (10đ) — Thiết kế cấu trúc
+
+**Suy luận là:**
+
 ```html 
 <header> 
 <!-- ​<header>: Phần đầu của trang web, chứa bộ nhận diện thương hiệu và menu chính. -->
@@ -239,17 +249,17 @@ Dưới đây là 3 lý do quan trọng khiến việc dùng `<table>` để dà
 Phản biện: Tại sao không nên "div-hóa" mọi thứ?
 Quan điểm "chỉ dùng `<div>` cho nhanh" thực tế là một món nợ kỹ thuật mà chúng ta sẽ phải trả giá đắt trong tương lai. Có hai lý do kỹ thuật cốt lõi khiến Semantic HTML không chỉ là sở thích, mà là tiêu chuẩn bắt buộc
 
-**Ít nhất 2 lý do kỹ thuật (SEO, Accessibility)**
+**Ít nhất 2 lý do kỹ thuật (SEO, Accessibility) là:**
 
 - Về SEO (Tối ưu hóa công cụ tìm kiếm): Các công cụ tìm kiếm như Google không "nhìn" trang web như con người. Chúng sử dụng các con bot để quét mã nguồn. Nếu mọi thứ đều là `<div>`, con bot sẽ rất vất vả để xác định đâu là nội dung chính, đâu là phần phụ. Sử dụng `<main>`, `<article>` hay `<h1>` giống như việc bạn gắn biển chỉ dẫn rõ ràng trên xa lộ, giúp nội dung được ưu tiên xếp hạng cao hơn.
 
 - Về Accessibility (Khả năng tiếp cận): Những người khiếm thị sử dụng trình đọc màn hình (Screen Readers) dựa hoàn toàn vào các thẻ ngữ nghĩa để điều hướng. Nếu bạn dùng `<div>`, trình đọc sẽ chỉ thấy một khối văn bản vô hồn. Với thẻ `<nav>`, người dùng có thể nhảy nhanh đến menu; với thẻ `<footer>`, họ biết đâu là thông tin bản quyền mà không cần phải đọc từ đầu đến cuối trang.
 
-**1 ví dụ cụ thể chứng minh semantic HTML giúp ích**
+**1 ví dụ cụ thể chứng minh semantic HTML giúp ích là:**
 
 Một ví dụ cụ thể: Hãy tưởng tượng bạn đang xây dựng một bảng thông số kỹ thuật cho iPhone. Nếu dùng `<div>`, bạn phải viết thêm rất nhiều CSS và JavaScript để định nghĩa cấu trúc. Nhưng nếu dùng thẻ `<table>`, trình duyệt mặc định hiểu đây là dữ liệu đối sánh. Khi người dùng nhấn phím tắt để nhảy giữa các ô, trình đọc màn hình sẽ tự động đọc tiêu đề cột tương ứng, điều mà một đống `<div>` lồng nhau không bao giờ làm được nếu không có thêm hàng tá thuộc tính ARIA phức tạp.
 
-**1 trường hợp thực tế mà `<div>` vẫn phù hợp**
+**1 trường hợp thực tế mà `<div>` vẫn phù hợp là:**
 
 Tuy nhiên, `<div>` không hề xấu. Thẻ này vẫn cực kỳ phù hợp trong các trường hợp thuần túy về trình bày. Ví dụ: khi bạn cần một cái khung bao bên ngoài để tạo hiệu ứng đổ bóng, bo góc bằng CSS, hoặc tạo các khối bọc (wrapper) để căn chỉnh layout (như Flexbox/Grid) mà không mang ý nghĩa nội dung. Lúc đó, `<div>` là lựa chọn trung lập và đúng đắn nhất vì nó không gây nhiễu cho cấu trúc ngữ nghĩa của trang.
 
