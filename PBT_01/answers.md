@@ -115,8 +115,13 @@ Việc phân chia bảng thành 3 phần giúp trình duyệt và các thiết b
 2.  **Tốc độ tải trang chậm (Performance) là:** Trình duyệt thường phải đợi tải xong toàn bộ code của bảng mới bắt đầu tính toán kích thước và hiển thị. Nếu layout trang nằm trong một table lớn, người dùng sẽ phải chờ đợi lâu hơn để thấy nội dung hiện ra.
 3.  **Khó làm Web thích ứng (Responsive) là:** Bảng có cấu trúc rất cứng nhắc. Việc biến một layout table từ 3 cột trên máy tính thành 1 cột trên điện thoại là cực kỳ khó khăn so với việc sử dụng các công cụ hiện đại như **CSS Flexbox** hoặc **Grid**.
 
+# Phần B Bài B1 (15đ) — Trang Profile cá nhân
 
+[Xem code profile](profile.html)
 
+# Phần B Bài B2 (15đ) — Trang Sản phẩm E-Commerce
+
+[Xem code products](products.html)
 
 # Phần B Bài 3 (15đ) — Debug HTML
 <a href = "debug.html">Code đã sửa </a>
