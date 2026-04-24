@@ -22,10 +22,10 @@
 ​Thời gian tải (Timing) của từng file và tổng thời gian tải toàn bộ trang web.
 ​Kích thước (Size) của các tài nguyên được truyền tải qua internet.
 #### 2 ​Hướng dẫn xác định các thành phần trên giao diện
-
 ​Cách tìm các thông tin theo yêu cầu:
 
 Dưới đây là ảnh chụp màn hình tab Network:
+
 
 ![Screenshot Tab Network](screenshots/image_f9e008.png)
 
