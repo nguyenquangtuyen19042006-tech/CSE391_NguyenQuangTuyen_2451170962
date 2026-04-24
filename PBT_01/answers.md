@@ -39,3 +39,19 @@ Dưới đây là ảnh chụp màn hình tab Network:
 ​Phần trong tài liệu: * Mục 2. Big Picture — Web hoạt động như thế nào?: Giải thích về luồng Request - Response giữa Browser và Server.
 ​Mục 3. Core Technical Truth — HTTP: Giải thích về các loại Method và Status Codes (200, 404...).
 ​Mục 6. Hands-on Practice: Hướng dẫn cách mở DevTools (F12) để quan sát thực tế.
+
+
+# Phần B Câu 3 danh sách lỗi trong file debug.html
+
+- Lỗi 1: Dòng 1 — Khai báo <!DOCTYPE> thiếu "html" — Sửa thành: <!DOCTYPE html>
+- Lỗi 2: Dòng 2 — Thẻ <title> thiếu thẻ đóng </title> — Sửa thành: <title>Trang web</title>
+- Lỗi 3: Dòng 3 — Giá trị charset "utf8" chưa chuẩn hóa — Sửa thành: <meta charset="UTF-8">
+- Lỗi 4: Dòng 4 — Thẻ đóng của h1 viết sai cú pháp (thiếu dấu gạch chéo) — Sửa thành: </h1>
+- Lỗi 5: Dòng 8 — Thẻ đóng của thẻ <a> viết sai cú pháp — Sửa thành: </a>
+- Lỗi 6: Dòng 15 — Thuộc tính src của thẻ <img> thiếu dấu ngoặc kép — Sửa thành: src="iphone.jpg"
+- Lỗi 7: Dòng 15 — Thẻ <img> thiếu thuộc tính "alt" (lỗi ngữ nghĩa/accessibility) — Sửa thành: thêm alt="iPhone 16 Pro"
+- Lỗi 8: Dòng 17 — Sai thứ tự đóng thẻ (Nesting error) — Sửa thành: <p><b>25.990.000đ</b></p>
+- Lỗi 9: Dòng 33 — Sử dụng thẻ <main> lần thứ hai (Mỗi trang chỉ có duy nhất một thẻ <main>) — Sửa thành: Đổi thẻ <main> này thành <aside>
+- Lỗi 10: Dòng 37 — Thẻ <p> trong footer thiếu thẻ đóng </p> — Sửa thành: Thêm </p> sau nội dung
+- Lỗi 11: Dòng 38 — Thiếu thẻ đóng </html> ở cuối trang — Sửa thành: Thêm </html> vào dòng cuối cùng
+- Lỗi 12: Dòng 14 & 23 — Thứ tự tiêu đề không hợp lý (Nhảy từ h1 sang h3) — Sửa thành: Đổi các thẻ <h3> thành <h2> để đảm bảo tính phân cấp (Hierarchy).
