@@ -119,11 +119,12 @@ Việc phân chia bảng thành 3 phần giúp trình duyệt và các thiết b
 
 
 # Phần B Bài 3 (15đ) — Debug HTML
-
+<a href = "debug.html">Code đã sửa </a>
+<br>
 **danh sách lỗi trong file debug.html là:**
 
-- Lỗi 1: Dòng 1 — Khai báo <!DOCTYPE> thiếu "html" — Sửa thành: !DOCTYPE html
-- Lỗi 2: Dòng 2 — Thẻ `<title> thiếu thẻ đóng `</title>` — Sửa thành: `<title>` Trang web `</title>`
+- Lỗi 1: Dòng 1 — Khai báo <!DOCTYPE> thiếu "html" — Sửa thành: `<!DOCTYPE html>`
+- Lỗi 2: Dòng 2 — Thẻ `<title>` thiếu thẻ đóng `</title>` — Sửa thành: `<title>` Trang web `</title>`
 - Lỗi 3: Dòng 3 — Giá trị charset "utf8" chưa chuẩn hóa — Sửa thành: meta charset="UTF-8"
 - Lỗi 4: Dòng 4 — Thẻ đóng của `<h1>` viết sai cú pháp (thiếu dấu gạch chéo) — Sửa thành: `</h1>`
 - Lỗi 5: Dòng 8 — Thẻ đóng của thẻ `<a>` viết sai cú pháp — Sửa thành: `</a>`
@@ -136,9 +137,47 @@ Việc phân chia bảng thành 3 phần giúp trình duyệt và các thiết b
 - Lỗi 12: Dòng 14 & 23 — Thứ tự tiêu đề không hợp lý (Nhảy từ `<h1>` sang `<h3>`) — Sửa thành: Đổi các thẻ `<h3>` thành `<h2>` để đảm bảo tính phân cấp (Hierarchy).
 
 # Phần B Bài 4 (15đ) — Phân tích trang web thật
+<a href="https://shopee.vn/">Trang web shopee</a>
 
+![Screenshot Tab Elements](./screenshots/bai4screenshottabelements.jpg)
 
+**3 thẻ semantic HTML5 mà trang đó sử dụng là:**
 
+- Thẻ `<header>`: Thường nằm ngay đầu trang, bao quanh logo Shopee và thanh tìm kiếm.
+
+- Thẻ `<nav>`: Thường bao quanh các link liên kết như "Thông báo", "Hỗ trợ", "Đăng ký/Đăng nhập" ở góc trên cùng.
+
+- Thẻ `<footer>`: Cuộn xuống cuối trang Shopee, sẽ thấy thẻ này bao quanh thông tin bản quyền và các liên kết giới thiệu.
+
+**Thẻ mà trang đó KHÔNG dùng đúng semantic(nếu có) là:**
+- `<div>` cho các nút bấm hoặc tiêu đề sản phẩm
+
+**Phân tích thẻ <table> (Sự vắng mặt của thẻ Table)**
+
+![Screenshot Tab Tìm thẻ table](./screenshots/bai4screenshotsTable.jpg)
+
+- Tại sao thẻ `<table>` lại "vắng" trên các trang như Shopee?
+Ngày xưa, thẻ `<table>` được dùng để xây dựng toàn bộ khung bố cục trang web. Nhưng hiện nay, nó đã nhường chỗ cho các kỹ thuật hiện đại hơn:
+
+- Flexbox và Grid: Giúp bố cục linh hoạt trên điện thoại (Responsive). Thẻ `<table>` rất cứng nhắc, khi xem trên màn hình nhỏ thường bị vỡ hoặc phải kéo ngang rất khó chịu.
+
+- Tốc độ render: Trình duyệt phải đọc hết toàn bộ nội dung trong `<table>` mới bắt đầu hiển thị được bảng đó. Còn các thẻ `<div>` thì tải đến đâu hiện đến đó, giúp web nhanh hơn.
+
+**Phân tích thẻ form**
+
+![Screenshot Tab Tìm thẻ form](./screenshots/bai4screenshotForm.jpg)
+
+**Method (Phương thức):** Form tìm kiếm này sử dụng GET.
+
+Dấu hiệu: Khi bạn tìm kiếm trên Shopee, từ khóa sẽ hiện trực tiếp trên URL (ví dụ: shopee.vn/search?keyword=iphone). Đây là đặc điểm của phương thức GET.
+
+**Action (Hành động):** Thuộc tính action thường là /search. Đây là địa chỉ của trang sẽ tiếp nhận và xử lý từ khóa tìm kiếm mà bạn gửi đi.
+
+**Input types:** text: Dùng để nhận từ khóa từ người dùng.
+
+- hidden: Dùng để gửi các dữ liệu hệ thống đi kèm.
+
+- submit (thông qua thẻ button): Dùng để kích hoạt việc gửi form.
 
 # PHẦN C— SUY LUẬN (20 điểm)
 ## Câu C1 (10đ) — Thiết kế cấu trúc
