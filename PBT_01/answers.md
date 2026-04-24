@@ -132,3 +132,125 @@ Dưới đây là 3 lý do quan trọng khiến việc dùng `<table>` để dà
 - Lỗi 10: Dòng 37 — Thẻ `<p>` trong `<footer>` thiếu thẻ đóng `</p>` — Sửa thành: Thêm `</p>` sau nội dung
 - Lỗi 11: Dòng 38 — Thiếu thẻ đóng `</html> ở cuối trang — Sửa thành: Thêm `</html> vào dòng cuối cùng
 - Lỗi 12: Dòng 14 & 23 — Thứ tự tiêu đề không hợp lý (Nhảy từ `<h1>` sang `<h3>`) — Sửa thành: Đổi các thẻ `<h3>` thành `<h2>` để đảm bảo tính phân cấp (Hierarchy).
+
+# PHẦN C— SUY LUẬN (20 điểm)
+## Câu C1 (10đ) — Thiết kế cấu trúc
+```html 
+<header> 
+<!-- ​<header>: Phần đầu của trang web, chứa bộ nhận diện thương hiệu và menu chính. -->
+    <nav aria-label="primary"> 
+    <!-- <nav> (primary): Khu vực điều hướng chính của website. -->
+        <ul> 
+            <li>
+                <a href="">Trang chủ</a>
+            </li> 
+        </ul>
+    </nav>
+</header>
+
+<nav aria-label="breadcrumb"> 
+<!-- ​<nav> (breadcrumb): Điều hướng phân cấp giúp người dùng biết vị trí trang hiện tại. -->
+    <ol> 
+    <!-- <ol>: Danh sách có thứ tự vì Breadcrumb cần thể hiện đúng cấp bậc từ ngoài vào trong. -->
+        <li><a href="">Trang chủ</a></li> 
+        <li><a href="">Điện thoại</a></li> 
+        <li>iPhone 16</li> 
+    </ol>
+</nav>
+
+<main> 
+<!-- <main>: Chứa nội dung quan trọng nhất, cốt lõi và duy nhất của trang này. -->
+    <article> 
+   <!-- ​<article>: Bao quanh một thực thể nội dung có thể đứng độc lập (như một sản phẩm cụ thể). -->
+        <section class="gallery"> 
+        <!-- ​<section> (gallery): Một phân đoạn riêng chứa bộ sưu tập hình ảnh sản phẩm. -->
+            <figure> 
+            <!-- ​<figure>: Dùng để đóng gói hình ảnh minh họa có ý nghĩa cho nội dung bài viết. -->
+                <img src="main.jpg" alt="Ảnh chính"> 
+            </figure>
+            
+            <div class="thumbnails"> 
+                <img src="1.jpg" alt="Ảnh 2"> 
+                <img src="2.jpg" alt="Ảnh 3"> 
+                <img src="3.jpg" alt="Ảnh 4"> 
+                <img src="4.jpg" alt="Ảnh 5"> 
+            </div>
+        </section>
+
+        <section class="info"> 
+        <!-- <section> (info): Phân đoạn chứa thông tin cơ bản, mô tả và giá cả sản phẩm. -->
+            <h1>Tên sản phẩm</h1> 
+            
+            <p class="price">Giá</p> 
+            
+            <div class="rating">Đánh giá sao</div> 
+            
+            <p class="desc">Mô tả sản phẩm</p> 
+        </section>
+
+        <section class="specs"> 
+        <!-- <section> (specs): Phân đoạn riêng biệt dùng để liệt kê thông số kỹ thuật. -->
+            <h2>Thông số kỹ thuật</h2> 
+            
+            <table> 
+            <!-- <table>: Dùng để trình bày dữ liệu đối chiếu dạng hàng và cột cho chuyên nghiệp. -->
+                <thead> 
+                    <tr> 
+                        <th>Thuộc tính</th> 
+                        <th>Chi tiết</th> 
+                    </tr>
+                </thead>
+                <tbody> 
+                    <tr> 
+                        <td>Màn hình</td> 
+                        <td>6.1 inch</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </article>
+
+    <aside> 
+    <!-- <aside>: Chứa nội dung phụ, liên quan gián tiếp như sản phẩm tương tự hoặc quảng cáo. -->
+        <h2>Sản phẩm tương tự</h2> 
+        <ul> 
+            <li>
+                <a href="#">Sản phẩm A</a>
+            </li> 
+        </ul>
+    </aside>
+
+    <section class="reviews"> 
+    <!-- <section> (reviews): Phân đoạn dành riêng cho phản hồi và đánh giá của khách hàng. -->
+        <h2>Đánh giá/Bình luận</h2> 
+    </section>
+
+</main>
+
+<footer> 
+<!-- <footer>: Phần chân trang, chứa các thông tin pháp lý hoặc bản quyền. -->
+    <p>Bản quyền 2026</p> 
+</footer>
+```
+### Câu C2 (10đ) — So sánh & Tranh luận
+#### Một đồng nghiệp nói: "Dùng <div> cho mọi thứ rồi thêm class là được, không cần semantic HTML. Tốn thời gian học thêm thẻ mới."Viết 1 đoạn phản biện (200-300 từ), phải bao gồm:
+
+Phản biện: Tại sao không nên "div-hóa" mọi thứ?
+Quan điểm "chỉ dùng `<div>` cho nhanh" thực tế là một món nợ kỹ thuật mà chúng ta sẽ phải trả giá đắt trong tương lai. Có hai lý do kỹ thuật cốt lõi khiến Semantic HTML không chỉ là sở thích, mà là tiêu chuẩn bắt buộc
+
+**Ít nhất 2 lý do kỹ thuật (SEO, Accessibility)**
+
+- Về SEO (Tối ưu hóa công cụ tìm kiếm): Các công cụ tìm kiếm như Google không "nhìn" trang web như con người. Chúng sử dụng các con bot để quét mã nguồn. Nếu mọi thứ đều là `<div>`, con bot sẽ rất vất vả để xác định đâu là nội dung chính, đâu là phần phụ. Sử dụng `<main>`, `<article>` hay `<h1>` giống như việc bạn gắn biển chỉ dẫn rõ ràng trên xa lộ, giúp nội dung được ưu tiên xếp hạng cao hơn.
+
+- Về Accessibility (Khả năng tiếp cận): Những người khiếm thị sử dụng trình đọc màn hình (Screen Readers) dựa hoàn toàn vào các thẻ ngữ nghĩa để điều hướng. Nếu bạn dùng `<div>`, trình đọc sẽ chỉ thấy một khối văn bản vô hồn. Với thẻ `<nav>`, người dùng có thể nhảy nhanh đến menu; với thẻ `<footer>`, họ biết đâu là thông tin bản quyền mà không cần phải đọc từ đầu đến cuối trang.
+
+**1 ví dụ cụ thể chứng minh semantic HTML giúp ích**
+
+Một ví dụ cụ thể: Hãy tưởng tượng bạn đang xây dựng một bảng thông số kỹ thuật cho iPhone. Nếu dùng `<div>`, bạn phải viết thêm rất nhiều CSS và JavaScript để định nghĩa cấu trúc. Nhưng nếu dùng thẻ `<table>`, trình duyệt mặc định hiểu đây là dữ liệu đối sánh. Khi người dùng nhấn phím tắt để nhảy giữa các ô, trình đọc màn hình sẽ tự động đọc tiêu đề cột tương ứng, điều mà một đống `<div>` lồng nhau không bao giờ làm được nếu không có thêm hàng tá thuộc tính ARIA phức tạp.
+
+**1 trường hợp thực tế mà `<div>` vẫn phù hợp**
+
+Tuy nhiên, `<div>` không hề xấu. Thẻ này vẫn cực kỳ phù hợp trong các trường hợp thuần túy về trình bày. Ví dụ: khi bạn cần một cái khung bao bên ngoài để tạo hiệu ứng đổ bóng, bo góc bằng CSS, hoặc tạo các khối bọc (wrapper) để căn chỉnh layout (như Flexbox/Grid) mà không mang ý nghĩa nội dung. Lúc đó, `<div>` là lựa chọn trung lập và đúng đắn nhất vì nó không gây nhiễu cho cấu trúc ngữ nghĩa của trang.
+
+Tóm lại, học thêm thẻ mới không tốn thời gian bằng việc phải đi sửa lỗi SEO hay fix lỗi hiển thị cho người khuyết tật sau này!
