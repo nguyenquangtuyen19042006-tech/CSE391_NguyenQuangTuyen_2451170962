@@ -887,4 +887,105 @@ a:hover
 tr:nth-child(even)
 ```
 
-Bài này đủ toàn bộ tiêu chí chấm điểm.
+## Bài B2 (20đ) — Box Model Lab
+
+---
+
+### Phần 1 — Content-box vs Border-box
+
+Sau khi mở DevTools → Inspect → Tab **Computed**, đo được:
+
+#### Hộp 1 (`content-box`)
+
+Width khai báo:
+
+```txt id="ywkprg"
+300px
+```
+
+Padding:
+
+```txt id="56jqmk"
+20 + 20 = 40px
+```
+
+Border:
+
+```txt id="5l1hkh"
+5 + 5 = 10px
+```
+
+Chiều rộng thực tế:
+
+```txt id="3t7jod"
+300 + 40 + 10 = 350px
+```
+
+→ **Hộp 1 (content-box): chiều rộng thực tế = 350px**
+
+---
+
+#### Hộp 2 (`border-box`)
+
+Width khai báo:
+
+```txt id="4u5n3h"
+300px
+```
+
+Border và padding đã nằm trong width.
+
+→ **Hộp 2 (border-box): chiều rộng thực tế = 300px**
+
+---
+
+#### Giải thích sự khác biệt
+
+`content-box` chỉ tính phần content, padding và border được cộng thêm bên ngoài nên kích thước thực tế lớn hơn.
+
+`border-box` tính luôn content + padding + border trong width đã khai báo nên kích thước thực tế đúng bằng width.
+
+---
+
+### Phần 2 — Layout 3 cột
+
+#### Nếu dùng `border-box`
+
+Tổng:
+
+```txt id="y9c1ze"
+250 + 500 + 250 = 1000px
+```
+
+→ Layout vừa khít container.
+
+---
+
+#### Nếu dùng `content-box`
+
+Sidebar:
+
+```txt id="0zj03v"
+250 + 30 = 280px
+```
+
+Content:
+
+```txt id="miy8wn"
+500 + 40 = 540px
+```
+
+Ads:
+
+```txt id="rkwbuw"
+250 + 30 = 280px
+```
+
+Tổng:
+
+```txt id="n2n5h7"
+280 + 540 + 280 = 1100px
+```
+
+→ **Lớn hơn container 1000px nên layout bị vỡ.**
+
