@@ -169,3 +169,157 @@ CSS hoạt động theo **độ ưu tiên (Specificity)**. Độ ưu tiên từ 
 **Inline CSS > Internal CSS > External CSS**
 
 Vì Inline CSS gắn trực tiếp trên phần tử HTML nên có độ ưu tiên cao nhất, do đó sẽ được áp dụng cuối cùng.
+
+
+# Câu A2 (8đ) — CSS Selectors — Dự đoán kết quả
+
+Dựa vào HTML đã cho, từng selector sẽ chọn như sau:
+
+---
+
+## 1. `h1`
+
+Selector này chọn tất cả thẻ `<h1>`.
+
+Trong HTML chỉ có 1 thẻ:
+
+```html
+<h1>ShopTLU</h1>
+```
+
+→ **Chọn: `ShopTLU`**
+
+---
+
+## 2. `.price`
+
+Selector class `.price` chọn mọi phần tử có class `price`.
+
+Có 2 phần tử:
+
+```html
+<p class="price">25.990.000đ</p>
+<p class="price">45.990.000đ</p>
+```
+
+→ **Chọn:**
+
+* `25.990.000đ`
+* `45.990.000đ`
+
+---
+
+## 3. `#app header`
+
+Chọn thẻ `header` nằm bên trong phần tử có id `app`.
+
+Phần tử được chọn:
+
+```html
+<header class="top-bar dark">
+```
+
+Text content bên trong:
+
+* `ShopTLU`
+* `Home`
+* `Products`
+* `About`
+
+→ **Chọn: `ShopTLU Home Products About`**
+
+---
+
+## 4. `nav a:first-child`
+
+Chọn thẻ `a` đầu tiên bên trong `nav`.
+
+HTML:
+
+```html
+<a href="/" class="active">Home</a>
+```
+
+→ **Chọn: `Home`**
+
+---
+
+## 5. `.product.featured h2`
+
+Chọn thẻ `h2` nằm trong phần tử có đồng thời 2 class:
+
+* `product`
+* `featured`
+
+HTML:
+
+```html
+<article class="product featured">
+    <h2>MacBook Pro</h2>
+</article>
+```
+
+→ **Chọn: `MacBook Pro`**
+
+---
+
+## 6. `article > p`
+
+Chọn các thẻ `p` là con trực tiếp của `article`.
+
+Article thứ nhất:
+
+* `25.990.000đ`
+* `Mô tả sản phẩm...`
+
+Article thứ hai:
+
+* `45.990.000đ`
+* `Mô tả sản phẩm...`
+
+→ **Chọn:**
+
+* `25.990.000đ`
+* `Mô tả sản phẩm...`
+* `45.990.000đ`
+* `Mô tả sản phẩm...`
+
+---
+
+## 7. `a[href="/"]`
+
+Chọn thẻ `a` có thuộc tính:
+
+```html
+href="/"
+```
+
+HTML:
+
+```html
+<a href="/" class="active">Home</a>
+```
+
+→ **Chọn: `Home`**
+
+---
+
+## 8. `.top-bar.dark h1`
+
+Chọn thẻ `h1` nằm trong phần tử có đồng thời class:
+
+* `top-bar`
+* `dark`
+
+HTML:
+
+```html
+<header class="top-bar dark">
+    <h1>ShopTLU</h1>
+</header>
+```
+
+→ **Chọn: `ShopTLU`**
+
+---
+
