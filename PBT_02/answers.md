@@ -177,3 +177,215 @@ Cần chú thích để người xem hiểu nội dung biểu đồ.
 ```
 
 Tóm lại, nếu chỉ cần hiển thị ảnh đơn giản thì dùng `<img>`. Nếu hình ảnh cần chú thích hoặc thông tin đi kèm thì nên dùng `<figure>` kết hợp với `<figcaption>`.
+
+# PHẦN C — PHÂN TÍCH & SUY LUẬN (20 điểm)
+
+### Câu C1 (10đ) — Debug Form
+
+Dưới đây là **8 lỗi** trong form và cách sửa:
+
+---
+
+#### Lỗi 1: Dòng 2 — Input "Tên" không có `<label for="...">`, vi phạm accessibility
+
+Người dùng dùng screen reader sẽ khó biết ô này nhập gì.
+
+**Sửa:**
+
+```html id="2pckfu"
+<label for="name">Tên:</label>
+<input type="text" id="name" name="name" required>
+```
+
+---
+
+#### Lỗi 2: Dòng 2 — Input "Tên" thiếu thuộc tính `name`
+
+Khi submit form, dữ liệu sẽ không gửi lên server.
+
+**Sửa:**
+
+```html id="9h5pmq"
+<input type="text" id="name" name="name" required>
+```
+
+---
+
+#### Lỗi 3: Dòng 4 — Input email không có `<label>`
+
+Chỉ dùng `placeholder` không đủ cho accessibility.
+
+**Sửa:**
+
+```html id="nqg8r0"
+<label for="email">Email:</label>
+<input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Email của bạn"
+    required>
+```
+
+---
+
+#### Lỗi 4: Dòng 6–7 — Hai ô password không có `<label>`
+
+Người dùng không phân biệt được ô mật khẩu và xác nhận mật khẩu.
+
+**Sửa:**
+
+```html id="ayg6qh"
+<label for="password">Mật khẩu:</label>
+<input type="password" id="password" name="password" required>
+
+<label for="confirmPassword">Nhập lại mật khẩu:</label>
+<input type="password" id="confirmPassword" name="confirmPassword" required>
+```
+
+---
+
+#### Lỗi 5: Dòng 6 — Password không có validation
+
+Không có `required`, `minlength`, dễ nhập mật khẩu yếu.
+
+**Sửa:**
+
+```html id="ng2lkv"
+<input
+    type="password"
+    id="password"
+    name="password"
+    minlength="8"
+    required>
+```
+
+---
+
+#### Lỗi 6: Dòng 9 — Phone dùng `type="text"` không đúng best practice
+
+Số điện thoại nên dùng `type="tel"` và pattern.
+
+**Sửa:**
+
+```html id="2ybq8g"
+<label for="phone">Phone:</label>
+<input
+    type="tel"
+    id="phone"
+    name="phone"
+    pattern="[0-9]{10}"
+    required>
+```
+
+---
+
+#### Lỗi 7: Dòng 9 — Dùng `value="0901234567"` làm dữ liệu mặc định không phù hợp
+
+`value` tạo dữ liệu có sẵn, nên dùng `placeholder`.
+
+**Sửa:**
+
+```html id="l21b7p"
+<input
+    type="tel"
+    id="phone"
+    name="phone"
+    placeholder="0901234567"
+    pattern="[0-9]{10}">
+```
+
+---
+
+#### Lỗi 8: Dòng 16 — "Tôi đồng ý điều khoản" có `<label>` nhưng không có checkbox liên kết
+
+Label không gắn với input nên không click được.
+
+**Sửa:**
+
+```html id="m4czvx"
+<input
+    type="checkbox"
+    id="terms"
+    name="terms"
+    required>
+
+<label for="terms">
+    Tôi đồng ý điều khoản
+</label>
+```
+
+---
+
+#### Form sau khi sửa hoàn chỉnh:
+
+```html id="u4cr4g"
+<form>
+
+    <label for="name">Tên:</label>
+    <input type="text" id="name" name="name" required>
+
+
+    <label for="email">Email:</label>
+    <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email của bạn"
+        required>
+
+
+    <label for="password">Mật khẩu:</label>
+    <input
+        type="password"
+        id="password"
+        name="password"
+        minlength="8"
+        required>
+
+
+    <label for="confirmPassword">Nhập lại mật khẩu:</label>
+    <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        minlength="8"
+        required>
+
+
+    <label for="phone">Phone:</label>
+    <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="0901234567"
+        pattern="[0-9]{10}"
+        required>
+
+
+    <label for="city">Thành phố:</label>
+    <select id="city" name="city">
+
+        <option>Hà Nội</option>
+        <option>TP.HCM</option>
+
+    </select>
+
+
+    <input
+        type="checkbox"
+        id="terms"
+        name="terms"
+        required>
+
+    <label for="terms">
+        Tôi đồng ý điều khoản
+    </label>
+
+
+    <input type="submit" value="Gửi">
+
+</form>
+```
+
+
