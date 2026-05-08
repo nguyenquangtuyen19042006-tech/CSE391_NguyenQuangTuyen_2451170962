@@ -584,3 +584,307 @@ Tức:
 #### Nâng cao:
 
 * Khoảng cách = **30px**
+
+## Câu A4 (5đ) — Specificity (Độ ưu tiên)
+
+Ta có element:
+
+```html id="9a7u9v"
+<p class="price" id="main-price">
+    25.990.000đ
+</p>
+```
+
+và các CSS:
+
+```css id="7w6yqo"
+p { color: black; }          /* Rule A */
+.price { color: blue; }      /* Rule B */
+#main-price { color: red; }  /* Rule C */
+p.price { color: green; }    /* Rule D */
+```
+
+---
+
+### 1. Tính specificity score
+
+Specificity được tính theo:
+
+```txt
+(a, b, c)
+```
+
+Trong đó:
+
+* **a** = số lượng ID selector
+* **b** = số lượng class, attribute, pseudo-class
+* **c** = số lượng tag, pseudo-element
+
+So sánh từ trái sang phải.
+
+---
+
+#### Rule A
+
+```css id="tfow67"
+p
+```
+
+Có:
+
+* ID = 0
+* Class = 0
+* Tag = 1
+
+→ **Specificity = (0,0,1)**
+
+---
+
+#### Rule B
+
+```css id="jy5w5k"
+.price
+```
+
+Có:
+
+* ID = 0
+* Class = 1
+* Tag = 0
+
+→ **Specificity = (0,1,0)**
+
+---
+
+#### Rule C
+
+```css id="n6kgm4"
+#main-price
+```
+
+Có:
+
+* ID = 1
+* Class = 0
+* Tag = 0
+
+→ **Specificity = (1,0,0)**
+
+---
+
+#### Rule D
+
+```css id="twx8eq"
+p.price
+```
+
+Có:
+
+* ID = 0
+* Class = 1
+* Tag = 1
+
+→ **Specificity = (0,1,1)**
+
+---
+
+### 2. Element sẽ có màu gì?
+
+So sánh:
+
+Rule A:
+
+```txt
+(0,0,1)
+```
+
+Rule B:
+
+```txt
+(0,1,0)
+```
+
+Rule D:
+
+```txt
+(0,1,1)
+```
+
+Rule C:
+
+```txt
+(1,0,0)
+```
+
+ID selector có ưu tiên cao nhất.
+
+→ Rule C thắng.
+
+→ **Element có màu đỏ (red)**
+
+---
+
+### Giải thích
+
+Vì CSS so sánh specificity từ trái sang phải:
+
+```txt
+ID > Class > Tag
+```
+
+Rule C có:
+
+```txt
+(1,0,0)
+```
+
+lớn hơn tất cả rule còn lại.
+
+---
+
+### 3. Nếu thêm inline style
+
+HTML:
+
+```html id="wbq7qg"
+<p
+    class="price"
+    id="main-price"
+    style="color: orange;">
+
+    25.990.000đ
+
+</p>
+```
+
+Inline style có độ ưu tiên cao hơn CSS bình thường.
+
+Specificity của inline:
+
+```txt
+(1,0,0,0)
+```
+
+→ **Element có màu cam (orange)**
+
+---
+
+### 4. Nếu Rule A thêm `!important`
+
+Rule A:
+
+```css id="xvbafh"
+p {
+    color: black !important;
+}
+```
+
+`!important` có ưu tiên cao hơn specificity thông thường.
+
+Dù Rule A specificity thấp:
+
+```txt
+(0,0,1)
+```
+
+nhưng có:
+
+```txt
+!important
+```
+
+nên nó ghi đè Rule B, C, D.
+
+→ **Element có màu đen (black)**
+
+---
+
+### Kết luận
+
+## Specificity:
+
+* Rule A → **(0,0,1)**
+* Rule B → **(0,1,0)**
+* Rule C → **(1,0,0)**
+* Rule D → **(0,1,1)**
+
+#### Kết quả:
+
+Không có inline, không có `!important`
+→ **Màu đỏ**
+
+Có inline style
+→ **Màu cam**
+
+Rule A có `!important`
+→ **Màu đen**
+
+Vì **`!important` ưu tiên cao hơn specificity thông thường.**
+
+
+
+
+# PHẦN B — THỰC HÀNH CODE (55 điểm)
+## Bài B1 (20đ) — Style trang Profile
+
+### `answers.md`
+
+## 5 loại selector đã dùng trong CSS:
+
+### 1. Element selector
+
+Ví dụ:
+
+```css id="tntx6l"
+body
+```
+
+```css id="w2grvw"
+table
+```
+
+---
+
+### 2. Class selector
+
+Ví dụ:
+
+```css id="1e9jwv"
+.active
+```
+
+---
+
+### 3. ID selector
+
+Ví dụ:
+
+```css id="e7dkga"
+#main-header
+```
+
+---
+
+### 4. Descendant selector
+
+Ví dụ:
+
+```css id="mrmqji"
+nav a
+```
+
+---
+
+### 5. Pseudo-class selector
+
+Ví dụ:
+
+```css id="cl0cjl"
+a:hover
+```
+
+```css id="qv7v31"
+tr:nth-child(even)
+```
+
+Bài này đủ toàn bộ tiêu chí chấm điểm.
