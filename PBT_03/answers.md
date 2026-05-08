@@ -323,3 +323,264 @@ HTML:
 
 ---
 
+## Câu A3 (7đ) — Box Model — Tính toán kích thước
+
+Trong CSS Box Model:
+
+**Tổng chiều rộng = Content + Padding + Border**
+**Không gian chiếm trên trang = Content + Padding + Border + Margin**
+
+---
+
+### 1. Trường hợp `content-box` (mặc định)
+
+CSS:
+
+```css id="wq6k65"
+.box-1 {
+    width: 400px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
+```
+
+Mặc định `box-sizing: content-box`, nghĩa là:
+
+`width = chỉ tính content`
+
+#### Bước tính:
+
+Content:
+
+```txt
+400px
+```
+
+Padding trái + phải:
+
+```txt
+20 + 20 = 40px
+```
+
+Border trái + phải:
+
+```txt
+5 + 5 = 10px
+```
+
+#### Chiều rộng hiển thị:
+
+```txt
+400 + 40 + 10 = 450px
+```
+
+→ **Chiều rộng hiển thị = 450px**
+
+---
+
+Margin trái + phải:
+
+```txt
+10 + 10 = 20px
+```
+
+#### Không gian chiếm trên trang:
+
+```txt
+450 + 20 = 470px
+```
+
+→ **Không gian chiếm trên trang = 470px**
+
+---
+
+### 2. Trường hợp `border-box`
+
+CSS:
+
+```css id="mrjjly"
+.box-2 {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
+```
+
+Với `border-box`:
+
+`width = content + padding + border`
+
+Tức tổng width luôn là:
+
+```txt
+400px
+```
+
+→ **Chiều rộng hiển thị = 400px**
+
+---
+
+#### Kích thước content thực tế
+
+Padding trái + phải:
+
+```txt
+20 + 20 = 40px
+```
+
+Border trái + phải:
+
+```txt
+5 + 5 = 10px
+```
+
+Tổng bị trừ:
+
+```txt
+40 + 10 = 50px
+```
+
+Content thực tế:
+
+```txt
+400 − 50 = 350px
+```
+
+→ **Kích thước content thực tế = 350px**
+
+---
+
+#### Không gian chiếm trên trang
+
+Margin trái + phải:
+
+```txt
+10 + 10 = 20px
+```
+
+Tổng:
+
+```txt
+400 + 20 = 420px
+```
+
+→ **Không gian chiếm trên trang = 420px**
+
+---
+
+### 3. Margin Collapse
+
+CSS:
+
+```css id="6qen89"
+.box-a {
+    margin-bottom: 25px;
+}
+
+.box-b {
+    margin-top: 40px;
+}
+```
+
+Khi 2 block element xếp dọc, margin dọc sẽ **collapse**.
+
+CSS không cộng hai margin lại.
+
+Nó lấy **margin lớn hơn**.
+
+So sánh:
+
+```txt
+25px và 40px
+```
+
+Lớn hơn là:
+
+```txt
+40px
+```
+
+→ **Khoảng cách giữa box-a và box-b = 40px**
+
+---
+
+### Tại sao không phải 65px?
+
+Vì CSS có cơ chế **Margin Collapse**.
+
+Hai margin theo chiều dọc của block element liền kề sẽ chồng lên nhau, không cộng dồn.
+
+Nên:
+
+```txt
+25 + 40 ≠ 65
+```
+
+Mà là:
+
+```txt
+max(25,40)=40
+```
+
+---
+
+### Nâng cao
+
+CSS:
+
+```css id="9t8h2n"
+.box-a {
+    margin-bottom: -10px;
+}
+
+.box-b {
+    margin-top: 40px;
+}
+```
+
+Khi có margin âm:
+
+Công thức:
+
+```txt
+margin = margin lớn nhất + margin nhỏ nhất
+```
+
+Tức:
+
+```txt
+40 + (-10)
+```
+
+```txt
+= 30px
+```
+
+→ **Khoảng cách = 30px**
+
+---
+
+### Đáp án cuối cùng
+
+#### Trường hợp 1:
+
+* Chiều rộng hiển thị = **450px**
+* Không gian chiếm trên trang = **470px**
+
+#### Trường hợp 2:
+
+* Chiều rộng hiển thị = **400px**
+* Content thực tế = **350px**
+* Không gian chiếm trên trang = **420px**
+
+#### Trường hợp 3:
+
+* Khoảng cách = **40px**
+* Không phải 65px vì **Margin Collapse**
+
+#### Nâng cao:
+
+* Khoảng cách = **30px**
