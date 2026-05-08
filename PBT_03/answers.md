@@ -1216,3 +1216,241 @@ Khi đó rule viết sau sẽ thắng.
 
 ---
 
+
+# PHẦN C — DEBUG & SUY LUẬN (20 điểm)
+
+## Câu C1 (10đ) — Debug CSS Layout
+
+Ta có CSS:
+
+```css id="i7awh0"
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.content {
+    width: 660px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    float: left;
+}
+```
+
+Mặc định CSS dùng:
+
+```txt
+box-sizing: content-box
+```
+
+---
+
+### 1. Tính chiều rộng thực tế
+
+#### Sidebar
+
+Width:
+
+```txt
+300px
+```
+
+Padding trái + phải:
+
+```txt
+20 + 20 = 40px
+```
+
+Border trái + phải:
+
+```txt
+1 + 1 = 2px
+```
+
+Tổng:
+
+```txt
+300 + 40 + 2 = 342px
+```
+
+→ **Sidebar = 342px**
+
+---
+
+#### Content
+
+Width:
+
+```txt
+660px
+```
+
+Padding trái + phải:
+
+```txt
+30 + 30 = 60px
+```
+
+Border trái + phải:
+
+```txt
+1 + 1 = 2px
+```
+
+Tổng:
+
+```txt
+660 + 60 + 2 = 722px
+```
+
+→ **Content = 722px**
+
+---
+
+### 2. Tại sao layout bị vỡ?
+
+Tổng 2 cột:
+
+```txt
+342 + 722 = 1064px
+```
+
+Container chỉ có:
+
+```txt
+960px
+```
+
+Ta có:
+
+```txt
+1064 > 960
+```
+
+Nên không đủ chỗ.
+
+Browser sẽ đẩy `.content` xuống dòng mới.
+
+→ **Layout bị vỡ.**
+
+---
+
+### 3. Cách sửa số 1 — Dùng `border-box`
+
+Với `border-box`, padding + border nằm bên trong width.
+
+Khai báo:
+
+```css id="jlwms0"
+*{
+    box-sizing:border-box;
+}
+```
+
+Lúc này:
+
+Sidebar:
+
+```txt
+300px
+```
+
+Content:
+
+```txt
+660px
+```
+
+Tổng:
+
+```txt
+960px
+```
+
+→ Vừa khít.
+
+---
+
+### 4. Cách sửa số 2 — Không dùng `border-box`
+
+Giữ `content-box`, phải trừ padding và border khỏi width.
+
+#### Sidebar
+
+Muốn tổng = 300px
+
+Padding + border:
+
+```txt
+40 + 2 = 42px
+```
+
+Width mới:
+
+```txt
+300 − 42 = 258px
+```
+
+---
+
+#### Content
+
+Padding + border:
+
+```txt
+60 + 2 = 62px
+```
+
+Width mới:
+
+```txt
+660 − 62 = 598px
+```
+
+Tổng:
+
+```txt
+258+42+598+62=960px
+```
+
+→ Layout đúng.
+
+---
+
+### Kết luận
+
+#### Chiều rộng thực tế:
+
+* Sidebar = **342px**
+* Content = **722px**
+
+#### Layout vỡ vì:
+
+```txt
+342 + 722 = 1064px > 960px
+```
+
+#### 2 cách sửa:
+
+##### Cách 1:
+
+Dùng:
+
+```css id="xhl5qf"
+box-sizing: border-box;
+```
+
+##### Cách 2:
+
+Giữ `content-box`, tự tính lại width:
+
+* Sidebar = **258px**
+* Content = **598px**
+

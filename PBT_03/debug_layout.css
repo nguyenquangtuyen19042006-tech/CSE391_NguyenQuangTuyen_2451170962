@@ -1,0 +1,95 @@
+body{
+
+    font-family: Arial;
+
+    margin: 20px;
+}
+
+
+
+.container{
+
+    width: 960px;
+
+    margin: 20px auto;
+
+    overflow: auto;
+
+    border: 2px solid black;
+}
+
+
+
+/* ====================== */
+/* CÁCH 1 */
+/* ====================== */
+
+.fix1 *{
+
+    box-sizing: border-box;
+}
+
+
+
+.sidebar1{
+
+    width: 300px;
+
+    padding: 20px;
+
+    border: 1px solid gray;
+
+    float: left;
+
+    background: lightblue;
+}
+
+
+
+.content1{
+
+    width: 660px;
+
+    padding: 30px;
+
+    border: 1px solid gray;
+
+    float: left;
+
+    background: lightgreen;
+}
+
+
+
+
+/* ====================== */
+/* CÁCH 2 */
+/* ====================== */
+
+.sidebar2{
+
+    width: 258px;
+
+    padding: 20px;
+
+    border: 1px solid gray;
+
+    float: left;
+
+    background: pink;
+}
+
+
+
+.content2{
+
+    width: 598px;
+
+    padding: 30px;
+
+    border: 1px solid gray;
+
+    float: left;
+
+    background: lightyellow;
+}
