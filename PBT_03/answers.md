@@ -1374,7 +1374,6 @@ Tổng:
 960px
 ```
 
-→ Vừa khít.
 
 ---
 
@@ -1454,3 +1453,344 @@ Giữ `content-box`, tự tính lại width:
 * Sidebar = **258px**
 * Content = **598px**
 
+## Câu C2 (10đ) — Cascade Puzzle
+
+Ta có CSS:
+
+```css id="px19rq"
+body { font-size: 16px; color: #333; }
+
+.container { font-size: 14px; }
+
+.card { color: blue; }
+
+.card .title { font-size: 20px; }
+
+.card p { color: inherit; }
+
+#featured .title { color: red; }
+
+.highlight { color: green !important; }
+```
+
+và HTML:
+
+```html id="rsvsln"
+<body>
+
+    <div class="container">
+
+        <div class="card" id="featured">
+
+            <h2 class="title highlight">
+                Sản phẩm A
+            </h2>
+
+            <p>
+                Mô tả sản phẩm
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <h2 class="title">
+                Sản phẩm B
+            </h2>
+
+            <p class="highlight">
+                Mô tả sản phẩm B
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+```
+
+---
+
+### 1. "Sản phẩm A" (h2)
+
+Element:
+
+```html id="7w3lyq"
+<h2 class="title highlight">
+```
+
+---
+
+#### Font-size
+
+##### Rule 1
+
+```css id="ybyfql"
+body { font-size:16px; }
+```
+
+Có thể inherited.
+
+---
+
+##### Rule 2
+
+```css id="8bd5um"
+.container { font-size:14px; }
+```
+
+Gần hơn, ghi đè body.
+
+---
+
+##### Rule 3
+
+```css id="vjlwm5"
+.card .title { font-size:20px; }
+```
+
+Target trực tiếp h2.
+
+Specificity:
+
+```txt id="jlwm8g"
+(0,2,0)
+```
+
+Thắng inheritance.
+
+→ **font-size = 20px**
+
+---
+
+#### Color
+
+Element match:
+
+##### Rule A
+
+```css id="sk0j0n"
+.card{
+    color:blue;
+}
+```
+
+Có thể inherit.
+
+---
+
+##### Rule B
+
+```css id="4v0nq4"
+#featured .title{
+    color:red;
+}
+```
+
+Specificity:
+
+```txt id="4l4uxf"
+(1,1,0)
+```
+
+---
+
+##### Rule C
+
+```css id="v5af5n"
+.highlight{
+    color:green !important;
+}
+```
+
+Specificity thấp hơn nhưng có:
+
+```txt id="zbmtv8"
+!important
+```
+
+`!important` thắng toàn bộ rule thường.
+
+→ **color = green**
+
+---
+
+### Kết quả "Sản phẩm A"
+
+* **font-size = 20px**
+* **color = green**
+
+---
+
+### 2. "Mô tả sản phẩm" (p trong featured)
+
+Element:
+
+```html id="2n5w98"
+<p>
+```
+
+---
+
+Match:
+
+##### `.card`
+
+```css id="r9j3w7"
+color: blue;
+```
+
+---
+
+##### `.card p`
+
+```css id="yp9nsa"
+color: inherit;
+```
+
+`inherit` = lấy từ parent.
+
+Parent `.card` có:
+
+```txt id="vjlwmm"
+blue
+```
+
+→ p nhận:
+
+```txt id="jlwmmu"
+blue
+```
+
+→ **color = blue**
+
+---
+
+### 3. "Sản phẩm B"
+
+Element:
+
+```html id="jyg9t3"
+<h2 class="title">
+```
+
+---
+
+#### Font-size
+
+Match:
+
+```css id="tb74qd"
+.card .title{
+    font-size:20px;
+}
+```
+
+→ **font-size = 20px**
+
+---
+
+#### Color
+
+Không match:
+
+```css id="o0e9mj"
+#featured .title
+```
+
+vì không có id.
+
+Không có color trực tiếp.
+
+Nên inherit từ:
+
+```css id="76mcnf"
+.card{
+    color:blue;
+}
+```
+
+→ **color = blue**
+
+---
+
+### Kết quả "Sản phẩm B"
+
+* **font-size = 20px**
+* **color = blue**
+
+---
+
+### 4. "Mô tả sản phẩm B"
+
+Element:
+
+```html id="n9lp9e"
+<p class="highlight">
+```
+
+---
+
+Match:
+
+##### Rule 1
+
+```css id="1b2qwd"
+.card p{
+    color:inherit;
+}
+```
+
+→ blue.
+
+---
+
+##### Rule 2
+
+```css id="qdjlwm"
+.highlight{
+    color:green !important;
+}
+```
+
+Có:
+
+```txt id="7p1cdo"
+!important
+```
+
+thắng.
+
+→ **color = green**
+
+---
+
+### Kết quả cuối cùng
+
+#### "Sản phẩm A"
+
+* Font-size = **20px**
+* Color = **green**
+
+---
+
+#### "Mô tả sản phẩm"
+
+* Color = **blue**
+
+---
+
+#### "Sản phẩm B"
+
+* Font-size = **20px**
+* Color = **blue**
+
+---
+
+#### "Mô tả sản phẩm B"
+
+* Color = **green**
+
+---
