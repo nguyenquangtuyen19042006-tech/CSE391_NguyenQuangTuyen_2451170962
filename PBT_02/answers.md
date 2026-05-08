@@ -389,3 +389,154 @@ Label không gắn với input nên không click được.
 ```
 
 
+
+### Câu C2 (10đ) — Thiết kế chiến lược Validation
+
+#### 1. Viết pattern regex cho CMND/CCCD và Số tài khoản
+
+##### CMND/CCCD (đúng 12 chữ số)
+
+CMND/CCCD yêu cầu đúng 12 chữ số, không được thừa hoặc thiếu.
+
+Pattern:
+
+```html
+pattern="[0-9]{12}"
+```
+
+hoặc regex đầy đủ:
+
+```html
+^[0-9]{12}$
+```
+
+Ví dụ dùng trong HTML:
+
+```html id="pu51wq"
+<input
+    type="text"
+    name="cccd"
+    pattern="[0-9]{12}"
+    required>
+```
+
+---
+
+##### Số tài khoản (10–15 chữ số)
+
+Số tài khoản phải có từ 10 đến 15 chữ số.
+
+Pattern:
+
+```html
+pattern="[0-9]{10,15}"
+```
+
+hoặc regex đầy đủ:
+
+```html
+^[0-9]{10,15}$
+```
+
+Ví dụ:
+
+```html id="ik6v4p"
+<input
+    type="text"
+    name="account"
+    pattern="[0-9]{10,15}"
+    required>
+```
+
+---
+
+#### 2. HTML5 validation có đủ an toàn cho ứng dụng ngân hàng không? Tại sao?
+
+**Không đủ an toàn.**
+
+HTML5 validation chỉ kiểm tra dữ liệu ở phía trình duyệt (client-side). Người dùng hoặc hacker có thể:
+
+* Tắt JavaScript hoặc HTML validation
+* Sửa mã HTML bằng Developer Tools
+* Gửi request trực tiếp bằng tool như Postman, Burp Suite
+* Tự tạo request giả mà bỏ qua toàn bộ validation
+
+Vì vậy HTML5 validation chỉ giúp cải thiện trải nghiệm người dùng, giảm lỗi nhập liệu, nhưng **không thể đảm bảo an toàn cho ứng dụng ngân hàng**.
+
+Ứng dụng ngân hàng bắt buộc phải validate lại ở Backend (server-side).
+
+---
+
+#### 3. Liệt kê 3 loại validation mà HTML5 không thể làm được (phải dùng JavaScript)
+
+##### a. Kiểm tra 2 ô có giống nhau hay không
+
+Ví dụ:
+
+* Password
+* Confirm Password
+
+HTML không thể tự so sánh 2 input khác nhau.
+
+Ví dụ:
+
+```txt
+12345678
+12345679
+```
+
+HTML vẫn có thể cho qua nếu cả 2 đều đúng pattern.
+
+---
+
+##### b. Kiểm tra tuổi thực tế
+
+Ví dụ:
+
+* Người đăng ký phải từ 18 tuổi trở lên
+
+HTML chỉ kiểm tra min/max date, nhưng không tự tính tuổi theo ngày hiện tại.
+
+---
+
+##### c. Kiểm tra dữ liệu theo logic nghiệp vụ
+
+Ví dụ:
+
+* Số dư tài khoản ≥ số tiền chuyển
+* CCCD đã tồn tại trong hệ thống chưa
+* Email đã đăng ký chưa
+
+HTML không thể kết nối database để kiểm tra.
+
+---
+
+#### 4. Hai rủi ro bảo mật nếu chỉ validate Frontend mà không validate Backend
+
+##### Rủi ro 1: Bypass validation và gửi dữ liệu giả
+
+Kẻ tấn công có thể bỏ qua HTML validation và gửi:
+
+* CCCD sai định dạng
+* Email giả
+* Số tài khoản sai
+
+Dẫn đến dữ liệu hệ thống bị sai hoặc hỏng.
+
+---
+
+##### Rủi ro 2: Tấn công Injection
+
+Nếu backend không kiểm tra dữ liệu, hacker có thể gửi mã độc như:
+
+```sql
+' OR 1=1 --
+```
+
+hoặc script:
+
+```html
+<script>alert('hack')</script>
+```
+
+
