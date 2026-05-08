@@ -989,3 +989,230 @@ Tổng:
 
 → **Lớn hơn container 1000px nên layout bị vỡ.**
 
+
+## Bài B3 (15đ) — Specificity Battle
+### 1. Liệt kê 10 rules + specificity
+
+#### Rule 1
+
+```css id="jlwm3x"
+p
+```
+
+Specificity:
+
+```txt id="sdu9zw"
+(0,0,1)
+```
+
+---
+
+#### Rule 2
+
+```css id="g6n4mg"
+.text
+```
+
+Specificity:
+
+```txt id="wx2n3t"
+(0,1,0)
+```
+
+---
+
+#### Rule 3
+
+```css id="qt0sbh"
+.highlight
+```
+
+Specificity:
+
+```txt id="s4dqvo"
+(0,1,0)
+```
+
+---
+
+#### Rule 4
+
+```css id="jq0eh8"
+p.text
+```
+
+Specificity:
+
+```txt id="4sp67f"
+(0,1,1)
+```
+
+---
+
+#### Rule 5
+
+```css id="7nv1vh"
+p.highlight
+```
+
+Specificity:
+
+```txt id="oybqdy"
+(0,1,1)
+```
+
+---
+
+#### Rule 6
+
+```css id="o22xtn"
+.text.highlight
+```
+
+Specificity:
+
+```txt id="cyumjn"
+(0,2,0)
+```
+
+---
+
+#### Rule 7
+
+```css id="zuvf8z"
+p.text.highlight
+```
+
+Specificity:
+
+```txt id="04djhd"
+(0,2,1)
+```
+
+---
+
+#### Rule 8
+
+```css id="1efy1v"
+#demo
+```
+
+Specificity:
+
+```txt id="y5pc6y"
+(1,0,0)
+```
+
+---
+
+#### Rule 9
+
+```css id="71mkvf"
+#demo.text
+```
+
+Specificity:
+
+```txt id="1odwd7"
+(1,1,0)
+```
+
+---
+
+#### Rule 10
+
+```css id="vbxyvj"
+p#demo.text.highlight
+```
+
+Specificity:
+
+```txt id="d8j0rb"
+(1,2,1)
+```
+
+---
+
+### 2. Element cuối cùng hiển thị màu gì?
+
+Element:
+
+```html id="0g4khn"
+<p id="demo" class="text highlight">
+```
+
+Khớp cả 10 rules.
+
+Rule mạnh nhất là:
+
+```css id="x0p91w"
+p#demo.text.highlight
+```
+
+Specificity:
+
+```txt id="7m1yha"
+(1,2,1)
+```
+
+lớn nhất.
+
+→ **Element cuối cùng có màu vàng (gold).**
+
+---
+
+### 3. Tại sao?
+
+CSS so sánh:
+
+```txt id="o3lj1s"
+ID > Class > Element
+```
+
+Rule cuối có:
+
+* 1 ID
+* 2 class
+* 1 element
+
+Nên thắng toàn bộ.
+
+---
+
+### 4. Nếu đổi thứ tự rules trong file CSS, kết quả có đổi không?
+
+#### Trường hợp này:
+
+**Không đổi.**
+
+Vì rule thắng có specificity cao nhất:
+
+```txt id="v9t07f"
+(1,2,1)
+```
+
+dù đặt đầu hay cuối vẫn thắng.
+
+---
+
+#### Khi nào mới đổi?
+
+Chỉ đổi khi 2 rule có specificity bằng nhau.
+
+Ví dụ:
+
+```css id="mduz5o"
+.text
+.highlight
+```
+
+đều là:
+
+```txt id="uzc0n5"
+(0,1,0)
+```
+
+Khi đó rule viết sau sẽ thắng.
+
+---
+

@@ -1,0 +1,58 @@
+/* 1 */
+p{
+    color: black;
+}
+
+
+/* 2 */
+.text{
+    color: blue;
+}
+
+
+/* 3 */
+.highlight{
+    color: green;
+}
+
+
+/* 4 */
+p.text{
+    color: orange;
+}
+
+
+/* 5 */
+p.highlight{
+    color: purple;
+}
+
+
+/* 6 */
+.text.highlight{
+    color: brown;
+}
+
+
+/* 7 */
+p.text.highlight{
+    color: pink;
+}
+
+
+/* 8 */
+#demo{
+    color: red;
+}
+
+
+/* 9 */
+#demo.text{
+    color: cyan;
+}
+
+
+/* 10 */
+p#demo.text.highlight{
+    color: gold;
+}
