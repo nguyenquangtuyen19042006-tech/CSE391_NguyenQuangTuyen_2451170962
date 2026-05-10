@@ -250,3 +250,119 @@ xl:
 **Kết luận:**  
 Màn hình càng lớn → số cột càng nhiều:  
 `1 cột → 2 cột → 3 cột → 4+ cột`
+
+## Câu A3 — Media Queries
+
+CSS dùng `min-width`, nghĩa là màn hình đạt mốc nào thì áp dụng CSS của mốc đó.  
+Nếu nhiều media query cùng đúng, CSS phía dưới sẽ ghi đè CSS phía trên.
+
+| Chiều rộng màn hình | `.container width` | Giải thích |
+|---------------------|-------------------|------------|
+| 375px | 100% | Chưa đạt 576px |
+| 600px | 540px | Đạt `min-width:576px` |
+| 800px | 720px | Đạt `min-width:768px` |
+| 1000px | 960px | Đạt `min-width:992px` |
+| 1400px | 1140px | Đạt `min-width:1200px` |
+
+### Kết luận:
+```plaintext
+375px  → 100%
+600px  → 540px
+800px  → 720px
+1000px → 960px
+1400px → 1140px
+```
+
+## Câu A4 — SCSS Basics
+
+### 1. Variables (biến)
+Dùng `$` để lưu màu, font, spacing... giúp sửa 1 chỗ đổi toàn bộ.
+
+```scss
+$primary-color: #2563eb;
+
+.button{
+    background: $primary-color;
+}
+```
+
+→ Đổi `$primary-color` thì mọi chỗ dùng biến đều đổi.
+
+---
+
+### 2. Nesting (lồng CSS)
+Viết CSS theo cấu trúc HTML, dễ đọc hơn.
+
+```scss
+.navbar{
+    background: black;
+
+    a{
+        color: white;
+    }
+}
+```
+
+Compile ra:
+
+```css
+.navbar { background: black; }
+.navbar a { color: white; }
+```
+
+---
+
+### 3. Mixins
+Giống function, tái sử dụng code.
+
+```scss
+@mixin flex-center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    @include flex-center;
+}
+```
+
+→ Không phải viết lại nhiều lần.
+
+---
+
+### 4. @extend / Inheritance
+Cho class khác kế thừa CSS.
+
+```scss
+.btn{
+    padding:10px;
+    border-radius:5px;
+}
+
+.btn-primary{
+    @extend .btn;
+    background: blue;
+}
+```
+
+→ `.btn-primary` dùng lại style của `.btn`.
+
+---
+
+### Tại sao browser không đọc được `.scss`?
+
+Vì browser chỉ hiểu **CSS**, không hiểu SCSS.
+
+SCSS phải được **compile thành CSS** trước.
+
+```plaintext
+SCSS → Compile → CSS → Browser
+```
+
+Có thể compile bằng:
+
+- Live Sass Compiler (VS Code)
+- Vite
+- Webpack
+- npm sass
