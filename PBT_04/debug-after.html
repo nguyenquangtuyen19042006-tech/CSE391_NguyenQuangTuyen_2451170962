@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>After Fix</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        section{
+            margin:50px;
+        }
+
+
+
+        /* ================= */
+        /* FIX 1 */
+        /* ================= */
+
+        .card-container{
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+
+        .card{
+
+            width:30%;
+
+            border:1px solid #ccc;
+
+            padding:20px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            min-height:450px;
+        }
+
+
+        .card img{
+            width:100%;
+        }
+
+
+        .card p{
+            margin:20px 0;
+        }
+
+
+        .btn{
+
+            margin-top:auto;
+
+            padding:10px;
+        }
+
+
+
+
+        /* ================= */
+        /* FIX 2 */
+        /* ================= */
+
+        .hero{
+
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            border:2px solid black;
+        }
+
+
+        .hero-content{
+            text-align:center;
+        }
+
+
+
+
+        /* ================= */
+        /* FIX 3 */
+        /* ================= */
+
+        .layout{
+
+            display:flex;
+
+            border:2px solid black;
+        }
+
+
+        .sidebar{
+
+            width:250px;
+
+            flex-shrink:0;
+
+            background:#ddd;
+
+            padding:20px;
+        }
+
+
+        .content{
+
+            flex:1;
+
+            padding:20px;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <section>
+
+        <h2>Fix 1</h2>
+
+        <div class="card-container">
+
+            <div class="card">
+
+                <img src="https://picsum.photos/300/200?1">
+
+                <p>Text ngắn</p>
+
+                <button class="btn">Mua</button>
+
+            </div>
+
+
+            <div class="card">
+
+                <img src="https://picsum.photos/300/200?2">
+
+                <p>
+                    Text dài hơn rất nhiều
+                    để test button.
+                </p>
+
+                <button class="btn">Mua</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section>
+
+        <h2>Fix 2</h2>
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                Hero Content
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section>
+
+        <h2>Fix 3</h2>
+
+        <div class="layout">
+
+            <div class="sidebar">
+
+                Sidebar
+
+            </div>
+
+
+            <div class="content">
+
+                Content dài Content dài
+                Content dài Content dài
+                Content dài Content dài
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

@@ -320,3 +320,265 @@ Mỗi item chiếm 50% → **2 cột**
 ```
 
 Item 7 nằm **hàng 3, cột 1**
+
+
+# PHẦN C — SUY LUẬN
+
+## Câu C1 — Flexbox vs Grid: Khi nào dùng gì?
+
+---
+
+## 1. Navigation bar ngang (logo + menu + buttons)
+
+**Chọn:** Flexbox
+
+**Giải thích:**
+
+Navbar là layout 1 chiều theo hàng ngang.
+
+Flexbox rất phù hợp để:
+
+- căn trái / giữa / phải
+- chia khoảng cách giữa các phần tử
+- căn giữa theo chiều dọc bằng `align-items: center`
+
+Ví dụ:
+
+```css
+display: flex;
+justify-content: space-between;
+align-items: center;
+```
+
+---
+
+## 2. Lưới ảnh Instagram (3 cột đều nhau, số ảnh không biết trước)
+
+**Chọn:** Grid
+
+**Giải thích:**
+
+Đây là layout 2 chiều (hàng + cột).
+
+Grid giúp:
+
+- tạo 3 cột bằng nhau
+- ảnh tự xuống hàng khi thêm ảnh mới
+- dễ kiểm soát kích thước
+
+Ví dụ:
+
+```css
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+```
+
+---
+
+## 3. Layout blog (main content + sidebar)
+
+**Chọn:** Grid
+
+**Giải thích:**
+
+Layout có nhiều cột cố định:
+
+- content chính
+- sidebar
+
+Grid phù hợp để chia vùng rõ ràng.
+
+Ví dụ:
+
+```css
+display: grid;
+grid-template-columns: 1fr 300px;
+```
+
+---
+
+## 4. Footer với 4 cột thông tin
+
+**Chọn:** Grid hoặc Flexbox
+
+**Ưu tiên:** Grid
+
+**Giải thích:**
+
+Footer có nhiều cột song song.
+
+Grid giúp:
+
+- chia đều 4 cột
+- giữ layout ổn định khi resize
+
+Ví dụ:
+
+```css
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+```
+
+---
+
+## 5. Card sản phẩm (ảnh trên, text giữa, nút dưới)
+
+**Chọn:** Flexbox
+
+**Giải thích:**
+
+Card là layout 1 chiều theo cột.
+
+Flexbox giúp:
+
+- sắp xếp từ trên xuống
+- nút luôn nằm đáy bằng `margin-top: auto`
+
+Ví dụ:
+
+```css
+display: flex;
+flex-direction: column;
+```
+
+```css
+button{
+    margin-top: auto;
+}
+```
+
+---
+
+## Kết luận
+
+- **Flexbox:** phù hợp layout 1 chiều (row hoặc column)
+- **Grid:** phù hợp layout 2 chiều (rows + columns)
+- **Kết hợp cả hai:** Grid cho layout lớn, Flexbox cho component nhỏ
+
+## Câu C2 — Giải thích nguyên nhân các lỗi Flexbox
+
+---
+
+### Lỗi 1: Cards không đều chiều cao, nút "Mua" bị lệch
+
+#### Hiện tượng
+
+Một số card có nút "Mua" cao hơn hoặc thấp hơn card khác.
+
+Ví dụ:
+
+```text
+Card 1             Card 2
+
+image              image
+text               text
+button             text
+                   button
+```
+
+Nút không nằm cùng 1 hàng.
+
+---
+
+#### Nguyên nhân
+
+Mỗi card chứa lượng text khác nhau:
+
+- card có text ngắn → chiều cao thấp
+- card có text dài → chiều cao lớn
+
+`.card` chỉ đang dùng block bình thường, chưa dùng Flexbox theo chiều dọc.
+
+Button xuất hiện ngay sau text nên text dài/ngắn khác nhau sẽ làm button bị lệch.
+
+---
+
+### Lỗi 2: Hero content không nằm giữa màn hình
+
+#### Hiện tượng
+
+Content bị nằm góc trái trên thay vì giữa màn hình.
+
+Ví dụ:
+
+```text
+┌────────────────────┐
+│ Hero Content       │
+│                    │
+│                    │
+└────────────────────┘
+```
+
+---
+
+#### Nguyên nhân
+
+Container chỉ có:
+
+```css
+display:flex;
+```
+
+Flexbox mặc định:
+
+```css
+justify-content:flex-start;
+align-items:stretch;
+```
+
+Nghĩa là:
+
+- phần tử bắt đầu từ bên trái
+- không tự căn giữa
+
+Vì chưa có:
+
+- `justify-content:center`
+- `align-items:center`
+
+nên content bị dính góc trái trên.
+
+---
+
+### Lỗi 3: Sidebar bị co nhỏ
+
+#### Hiện tượng
+
+Khi content dài hoặc màn hình nhỏ, sidebar không còn đúng 250px.
+
+Ví dụ:
+
+```text
+Before:
+
+┌────┬────────────────────┐
+│ SB │ content            │
+└────┴────────────────────┘
+```
+
+Sidebar bị ép nhỏ.
+
+---
+
+#### Nguyên nhân
+
+Trong Flexbox, mặc định mọi item có:
+
+```css
+flex-shrink:1;
+```
+
+Điều này có nghĩa:
+
+Nếu không đủ chỗ, flex item sẽ tự co lại.
+
+Sidebar tuy có:
+
+```css
+width:250px;
+```
+
+nhưng vẫn bị Flexbox ép nhỏ vì chưa tắt shrink.
+
+Do đó sidebar không giữ được kích thước ban đầu.
