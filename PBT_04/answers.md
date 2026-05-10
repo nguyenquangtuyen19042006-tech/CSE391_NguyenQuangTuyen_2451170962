@@ -12,9 +12,9 @@
 
 ---
 
-## Giải thích từng loại
+### Giải thích từng loại
 
-### 1. `position: static`
+#### 1. `position: static`
 - Đây là mặc định của mọi element.
 - `top`, `right`, `bottom`, `left` **không hoạt động**.
 - Element nằm theo flow bình thường.
@@ -32,7 +32,7 @@ Use case:
 
 ---
 
-### 2. `position: relative`
+#### 2. `position: relative`
 - Element **vẫn chiếm chỗ** trong flow.
 - Có thể dịch chuyển bằng `top`, `left`, `right`, `bottom`.
 - Vị trí được tính từ **chính vị trí ban đầu của nó**.
@@ -53,7 +53,7 @@ Use case:
 
 ---
 
-### 3. `position: absolute`
+#### 3. `position: absolute`
 - Element **thoát khỏi document flow**.
 - Không chiếm chỗ nữa.
 - Có thể đè lên element khác.
@@ -70,9 +70,17 @@ Ví dụ:
     top:0;
     right:0;
 }
+```
+
+Use case:
+- Notification badge.
+- Tooltip.
+- Overlay.
+- Icon góc.
+
 ---
 
-### 4. `position: fixed`
+#### 4. `position: fixed`
 - Element **thoát flow**.
 - Gắn trực tiếp vào viewport.
 - Scroll xuống vẫn đứng yên.
@@ -86,9 +94,15 @@ Ví dụ:
     right:20px;
 }
 ```
+
+Use case:
+- Chat button.
+- Back to top.
+- Floating menu.
+
 ---
 
-### 5. `position: sticky`
+#### 5. `position: sticky`
 - Ban đầu hoạt động như `relative`.
 - Khi scroll tới ngưỡng (`top`, `left`...) thì dính lại như `fixed`.
 - Vẫn chiếm chỗ trong flow.
@@ -100,12 +114,18 @@ Ví dụ:
     position: sticky;
     top:0;
 }
+```
+
+Use case:
+- Sticky navbar.
+- Sticky sidebar.
+- Sticky table header.
 
 ---
 
-# Câu hỏi thêm
+### Câu hỏi thêm
 
-## Khi nào `absolute` tham chiếu `body`?
+#### Khi nào `absolute` tham chiếu `body`?
 
 Khi **không tìm thấy parent nào có `position` khác `static`**.
 
@@ -129,7 +149,7 @@ Ví dụ:
 
 ---
 
-## Khi nào `absolute` tham chiếu parent?
+#### Khi nào `absolute` tham chiếu parent?
 
 Khi parent gần nhất có:
 
@@ -162,7 +182,7 @@ Ví dụ:
 
 ---
 
-# "Nearest positioned ancestor" là gì?
+### "Nearest positioned ancestor" là gì?
 
 Là:
 
@@ -198,3 +218,105 @@ Ví dụ:
 - Không cần tìm tiếp `section` hay `body`
 
 → `.card` chính là **nearest positioned ancestor**.
+
+
+
+## Câu A2 — Flexbox vs Grid
+
+### Trường hợp 1
+
+```css
+.container { display: flex; }
+.item { flex: 1; }
+```
+
+4 items → **1 hàng, 4 cột bằng nhau**
+
+```txt
+[1][2][3][4]
+```
+
+---
+
+### Trường hợp 2
+
+```css
+.container { display: flex; flex-wrap: wrap; }
+.item { width: 45%; margin: 2.5%; }
+```
+
+Mỗi item chiếm 50% → **2 cột**
+
+6 items → **3 hàng, 2 cột**
+
+```txt
+[1][2]
+[3][4]
+[5][6]
+```
+
+---
+
+### Trường hợp 3
+
+```css
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+```
+
+3 items → **1 hàng, giãn đều**
+
+```txt
+[1]      [2]      [3]
+```
+
+(`align-items:center` = căn giữa theo trục dọc)
+
+---
+
+### Trường hợp 4
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 20px;
+}
+```
+
+**1 hàng, 3 cột**
+
+- Cột 1: 200px
+- Cột 2: co giãn
+- Cột 3: 200px
+
+```txt
+[1][    2    ][3]
+```
+
+---
+
+### Trường hợp 5
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+}
+```
+
+7 items → **3 cột**
+
+→ **3 hàng**
+
+```txt
+[1][2][3]
+[4][5][6]
+[7]
+```
+
+Item 7 nằm **hàng 3, cột 1**
