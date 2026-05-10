@@ -1,0 +1,185 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+}
+
+
+/* HEADER */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:60px;
+
+    background:#222;
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 40px;
+
+    z-index:999;
+}
+
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+
+.nav-list{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+
+.nav-list a{
+    color:white;
+    text-decoration:none;
+}
+
+
+
+/* LAYOUT */
+
+.container{
+    max-width:1200px;
+
+    margin:100px auto;
+
+    display:flex;
+    gap:40px;
+
+    align-items:flex-start;
+}
+
+
+.content{
+    flex:1;
+}
+
+
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+
+    background:#f3f3f3;
+
+    padding:20px;
+
+    border-radius:10px;
+
+
+    position:sticky;
+    top:80px;
+}
+
+
+
+/* PRODUCT */
+
+.product-card{
+
+    width:400px;
+
+    margin-top:30px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    padding-bottom:20px;
+
+
+    position:relative;
+}
+
+
+.product-card img{
+    width:100%;
+    display:block;
+}
+
+
+.product-card h2,
+.product-card p{
+    padding:15px;
+}
+
+
+
+/* BADGE */
+
+.badge{
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:red;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+}
+
+
+
+/* SCROLL BUTTON */
+
+.scroll-top{
+
+    position:fixed;
+
+    right:30px;
+    bottom:30px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:#222;
+    color:white;
+
+    text-decoration:none;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+}
+
+
+
+/* DUMMY */
+
+.dummy-text p{
+    margin:30px 0;
+}
