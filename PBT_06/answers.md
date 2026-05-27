@@ -101,3 +101,132 @@
 * `.container` → web bình thường.
 * `.container-fluid` → banner full màn hình.
 * `.container-md` → mobile full width, desktop gọn lại.
+
+
+# Câu C1 — Tùy biến Bootstrap
+
+## Đổi màu `$primary` sang `#E63946`
+
+### Quy trình
+
+1. Cài Bootstrap bằng npm
+
+```bash id="7zj9y2"
+npm install bootstrap
+```
+
+2. Tạo file SCSS
+
+```scss id="m8k2wd"
+$primary: #E63946;
+
+@import "bootstrap/scss/bootstrap";
+```
+
+3. Compile SCSS → CSS bằng Sass
+
+```bash id="0a8h1m"
+sass style.scss style.css
+```
+
+4. Link file CSS mới vào HTML.
+
+---
+
+# Cần công cụ gì?
+
+* Node.js
+* npm
+* Sass (SCSS compiler)
+
+---
+
+# Tại sao không nên override trực tiếp?
+
+```css id="9yx8tx"
+.btn-primary{
+    background:red;
+}
+```
+
+## Vì:
+
+* Chỉ đổi riêng `.btn-primary`
+* Không đổi các component khác dùng `$primary`
+
+  * alert-primary
+  * bg-primary
+  * text-primary
+  * border-primary
+
+---
+
+# Dùng SASS variables tốt hơn vì:
+
+* Đồng bộ toàn bộ framework.
+* Dễ maintain.
+* Dễ đổi theme.
+* Bootstrap tự generate toàn bộ class theo màu mới.
+# Câu C2 — So sánh CSS thuần và Bootstrap
+
+## CSS thuần
+
+```css id="7f0s6x"
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    background:black;
+    color:white;
+}
+
+.card{
+    width:300px;
+    border:1px solid #ccc;
+    padding:15px;
+    border-radius:10px;
+}
+
+.card img{
+    width:100%;
+}
+
+@media (max-width:768px){
+    .navbar{
+        flex-direction:column;
+    }
+}
+```
+
+---
+
+# So sánh
+
+| Tiêu chí   | CSS thuần           | Bootstrap |
+| ---------- | ------------------- | --------- |
+| Dòng CSS   | Nhiều               | Ít        |
+| Thời gian  | Lâu hơn             | Nhanh hơn |
+| Tùy biến   | Cao                 | Thấp hơn  |
+| Responsive | Tự viết media query | Có sẵn    |
+
+---
+
+# Khi nên dùng Bootstrap
+
+* Làm nhanh.
+* Landing page.
+* Admin dashboard.
+* Prototype.
+* Dự án nhỏ/trung bình.
+
+---
+
+# Khi không nên dùng Bootstrap
+
+* UI cần quá độc đáo.
+* Web tối ưu performance cao.
+* Design system riêng.
+* Muốn kiểm soát CSS hoàn toàn.
+
+
