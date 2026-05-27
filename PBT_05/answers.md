@@ -378,8 +378,276 @@ style.css = file CSS sau khi compile
 #### Compile một lần
 
 ```bash
-sass scss/style.scss style.css
+sass `scss/style.scss style.css`
 Lệnh này giúp tự động compile mỗi khi lưu file SCSS.
 
 Khi sửa SCSS và nhấn Ctrl + S,
 file CSS sẽ tự cập nhật.
+```
+# Câu C1 — Phân tích Responsive Website
+
+## Website được chọn
+
+YouTube
+
+---
+
+# 1. Mobile (375px)
+
+## Screenshot
+
+> Chèn ảnh screenshot mobile ở đây
+> ![Mobile](./screenshots/C1_375px.jpg)
+
+---
+
+## Phân tích
+
+### Navigation
+
+* Thanh menu bên trái bị ẩn.
+* Xuất hiện icon hamburger ☰ để mở menu.
+* Thanh tìm kiếm thu nhỏ.
+* Các icon như thông báo, tài khoản vẫn giữ lại.
+
+### Lưới content
+
+* Video hiển thị dạng **1 cột**.
+* Các thumbnail chiếm gần toàn bộ chiều ngang màn hình.
+
+### Elements bị ẩn
+
+* Sidebar menu đầy đủ bị ẩn.
+* Một số text menu chuyển thành icon.
+* Thanh category bị rút gọn.
+
+### Font size
+
+* Font nhỏ hơn desktop.
+* Tiêu đề video ngắn hơn để phù hợp màn hình nhỏ.
+
+---
+
+# 2. Tablet (768px)
+
+## Screenshot
+
+> Chèn ảnh screenshot tablet ở đây
+> ![Tablet](./screenshots/C1_768px.jpg)
+
+---
+
+## Phân tích
+
+### Navigation
+
+* Sidebar xuất hiện dạng thu gọn.
+* Thanh tìm kiếm lớn hơn mobile.
+* Menu điều hướng dễ nhìn hơn.
+
+### Lưới content
+
+* Hiển thị khoảng **2–3 cột video**.
+* Khoảng cách giữa các video lớn hơn.
+
+### Elements bị ẩn
+
+* Một số text trong sidebar vẫn bị rút gọn.
+* Sidebar chưa hiện đầy đủ như desktop.
+
+### Font size
+
+* Font lớn hơn mobile.
+* Tiêu đề và mô tả dễ đọc hơn.
+
+---
+
+# 3. Desktop (1440px)
+
+## Screenshot
+
+> Chèn ảnh screenshot desktop ở đây
+> ![Desktop](./screenshots/C1_1200px.jpg)
+
+---
+
+## Phân tích
+
+### Navigation
+
+* Sidebar hiển thị đầy đủ.
+* Thanh tìm kiếm mở rộng.
+* Các menu và category hiện đầy đủ.
+
+### Lưới content
+
+* Hiển thị khoảng **4–6 cột video** tùy kích thước cửa sổ.
+* Layout rộng và nhiều nội dung hơn.
+
+### Elements bị ẩn
+
+* Hầu như không có thành phần nào bị ẩn.
+
+### Font size
+
+* Font lớn và dễ đọc hơn mobile/tablet.
+* Khoảng trắng giữa các phần nhiều hơn.
+
+---
+
+# 4. Media Queries tìm được trong DevTools
+
+## Media Query 1
+
+```css
+@media (max-width: 656px) {
+    #guide {
+        display: none;
+    }
+}
+```
+
+### Ý nghĩa
+
+* Khi màn hình nhỏ hơn 656px:
+
+  * Sidebar sẽ bị ẩn.
+  * Giao diện chuyển sang kiểu mobile.
+
+---
+
+## Media Query 2
+
+```css
+@media (min-width: 1000px) {
+    ytd-rich-grid-renderer {
+        --ytd-rich-grid-items-per-row: 4;
+    }
+}
+```
+
+### Ý nghĩa
+
+* Khi màn hình lớn hơn 1000px:
+
+  * Số lượng video trên mỗi hàng tăng lên.
+  * Layout hiển thị nhiều cột hơn.
+
+---
+
+# Kết luận
+
+YouTube sử dụng Responsive Design rất mạnh để thích nghi với nhiều kích thước màn hình khác nhau:
+
+* Mobile ưu tiên đơn giản và tiết kiệm không gian.
+* Tablet cân bằng giữa hiển thị và thao tác.
+* Desktop tận dụng tối đa chiều rộng để hiển thị nhiều nội dung hơn.
+
+Trang web sử dụng nhiều `@media` rules để thay đổi:
+
+* Sidebar
+* Grid layout
+* Font size
+* Khoảng cách và bố cục nội dung.
+
+
+# Câu C2 — Thiết kế Responsive Strategy
+
+## Mobile (375px)
+
+```text
+HEADER
+HERO IMAGE
+GRID 1 CỘT
+FORM ĐẶT BÀN
+GOOGLE MAP
+FOOTER
+```
+
+* Ẩn menu lớn → dùng hamburger.
+* Form nằm dưới grid ảnh.
+
+---
+
+## Tablet (768px)
+
+```text
+HEADER
+HERO IMAGE
+GRID 2 CỘT
+FORM
+MAP
+FOOTER
+```
+
+* Grid ảnh: 2 cột.
+* Map nằm dưới form.
+
+---
+
+## Desktop (1440px)
+
+```text
+HEADER
+HERO IMAGE
+
+GRID 3 CỘT | FORM
+
+MAP
+FOOTER
+```
+
+* Layout 2 cột:
+
+  * trái: ảnh món ăn
+  * phải: form
+* Không cần sidebar.
+
+---
+
+# CSS Skeleton
+
+```css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Mobile First */
+
+.container{
+    display:grid;
+    gap:20px;
+}
+
+.food-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+}
+
+/* Tablet */
+@media (min-width:768px){
+
+    .food-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+/* Desktop */
+@media (min-width:1440px){
+
+    .main{
+        display:grid;
+        grid-template-columns:2fr 1fr;
+        gap:30px;
+    }
+
+    .food-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+```
