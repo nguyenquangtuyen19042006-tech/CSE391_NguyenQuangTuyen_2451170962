@@ -358,7 +358,7 @@ SCSS phải được **compile thành CSS** trước.
 
 ```plaintext
 SCSS → Compile → CSS → Browser
-```
+```   
 
 Có thể compile bằng:
 

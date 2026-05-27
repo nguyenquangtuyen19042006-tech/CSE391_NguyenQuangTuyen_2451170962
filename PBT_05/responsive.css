@@ -1,0 +1,211 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MOBILE FIRST */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* HEADER */
+.header {
+    background: #222;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* HAMBURGER */
+.hamburger {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* NAVIGATION */
+.nav {
+    display: none;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+    display: none;
+}
+
+/* TABLET FILTER */
+.tablet-filter {
+    display: none;
+}
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+}
+
+/* PRODUCT GRID */
+.products {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card h3 {
+    margin: 15px 0 10px;
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    padding: 10px 20px;
+    border: none;
+    background: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* ADS */
+.ads {
+    display: none;
+}
+
+/* FOOTER */
+.footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (min-width: 768px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    /* HIDE HAMBURGER */
+    .hamburger {
+        display: none;
+    }
+
+    /* SHOW NAV */
+    .nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    /* TABLET FILTER */
+    .tablet-filter {
+        display: block;
+        padding: 15px 20px;
+        background: white;
+    }
+
+    .tablet-filter select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* GRID 2 COLUMNS */
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================= */
+/* DESKTOP */
+/* ========================= */
+
+@media (min-width: 1024px) {
+
+    body {
+        font-size: 20px;
+    }
+
+    /* MAIN LAYOUT */
+    .container {
+        display: grid;
+        grid-template-columns: 220px 1fr 200px;
+        gap: 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+        display: block;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+    }
+
+    .sidebar li {
+        margin-bottom: 10px;
+    }
+
+    /* HIDE TABLET FILTER */
+    .tablet-filter {
+        display: none;
+    }
+
+    /* PRODUCT GRID 4 COLUMNS */
+    .products {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* ADS BAR */
+    .ads {
+        display: block;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
