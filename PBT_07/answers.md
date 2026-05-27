@@ -353,3 +353,111 @@ var html = `
 </div>
 `;
 ```
+
+# Câu C1 — Debug JavaScript
+
+## Các lỗi và cách sửa
+
+| Lỗi                           | Giải thích                 | Cách sửa          |
+| ----------------------------- | -------------------------- | ----------------- |
+| `"100000"` là string          | Nên truyền number          | `100000`          |
+| Thiếu `;`                     | Dễ lỗi format              | thêm `;`          |
+| `if (giaSauGiam = 0)`         | Dùng `=` là gán            | đổi thành `===`   |
+| `giaSauGiam === 0` khó xảy ra | Nên dùng `<= 0`            | kiểm tra tốt hơn  |
+| Không kiểm tra `giaBan`       | Có thể nhập string         | kiểm tra `typeof` |
+| Dùng `var` trong loop         | `var` không có block scope | đổi thành `let`   |
+
+---
+
+# Lỗi ẩn của `var`
+
+```js id="2k4qxr"
+for (var i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log(i)
+    }, 1000)
+}
+```
+
+## Kết quả
+
+```text id="n3t5hg"
+5
+5
+5
+5
+5
+```
+
+### Vì:
+
+* `var` dùng chung 1 biến `i`.
+* Khi `setTimeout` chạy:
+
+  * vòng lặp đã xong
+  * `i = 5`
+
+---
+
+# Sửa bằng `let`
+
+```js id="q5m7tb"
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log(i)
+    }, 1000)
+}
+```
+
+## Kết quả
+
+```text id="g9s4vk"
+0
+1
+2
+3
+4
+```
+
+---
+
+# Code đã sửa
+
+```js id="v8z2yc"
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+
+    if(typeof giaBan !== "number"){
+        return "Giá bán không hợp lệ";
+    }
+
+    if(phanTramGiam < 0 || phanTramGiam > 100){
+        return "Phần trăm giảm không hợp lệ";
+    }
+
+    let giamGia = giaBan * phanTramGiam / 100;
+
+    let giaSauGiam = giaBan - giamGia;
+
+    if(giaSauGiam <= 0){
+        console.log("Sản phẩm miễn phí!");
+    }
+
+    return giaSauGiam;
+}
+
+const gia = tinhGiaGiamGia(100000, 20);
+
+console.log("Giá sau giảm: " + gia + "đ");
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+
+console.log("Giá: " + gia2);
+
+for(let i = 0; i < 5; i++){
+
+    setTimeout(function(){
+        console.log("Item " + i);
+    }, 1000);
+
+}
+```
