@@ -203,3 +203,153 @@ Kết quả:
 
 * JavaScript hiểu `{}` là block code.
 * `+[]` → `0` nên kết quả là `0`.
+
+
+# Câu A3 — So sánh `==` vs `===`
+
+```js id="t4d9vr"
+console.log(5 == "5");          // true
+
+console.log(5 === "5");         // false
+
+console.log(null == undefined); // true
+
+console.log(null === undefined);// false
+
+console.log(NaN == NaN);        // false
+
+console.log(0 == false);        // true
+
+console.log(0 === false);       // false
+
+console.log("" == false);       // true
+```
+
+---
+
+# Giải thích
+
+## `==`
+
+* So sánh giá trị.
+* Có ép kiểu (type coercion).
+
+Ví dụ:
+
+```js id="s0g0ak"
+5 == "5"
+```
+
+→ `"5"` bị ép thành number.
+
+---
+
+## `===`
+
+* So sánh giá trị + kiểu dữ liệu.
+* Không ép kiểu.
+
+Ví dụ:
+
+```js id="w8z1hg"
+5 === "5"
+```
+
+→ number khác string.
+
+---
+
+# Trường hợp đặc biệt
+
+## `NaN == NaN`
+
+```js id="c8d7js"
+false
+```
+
+* `NaN` không bằng bất kỳ giá trị nào, kể cả chính nó.
+
+---
+
+# Nên dùng gì?
+
+## Nên dùng:
+
+```js id="y9g8lo"
+===
+```
+
+### Vì:
+
+* Không bị ép kiểu ngoài ý muốn.
+* Ít lỗi hơn.
+* Dễ debug.
+* Code rõ ràng hơn.
+
+
+# Câu A4 — Truthy & Falsy
+
+## Tất cả giá trị Falsy
+
+```js id="6qv6x9"
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+```
+
+---
+
+# Dự đoán
+
+```js id="u2y5g3"
+if ("0") console.log("A");   // In
+
+if ("") console.log("B");    // Không in
+
+if ([]) console.log("C");    // In
+
+if ({}) console.log("D");    // In
+
+if (null) console.log("E");  // Không in
+
+if (0) console.log("F");     // Không in
+
+if (-1) console.log("G");    // In
+
+if (" ") console.log("H");   // In
+```
+
+---
+
+# Kết quả in ra
+
+```text id="a6n4ks"
+A
+C
+D
+G
+H
+```
+# Câu A5 — Template Literals
+
+```js id="7f8m2r"
+// Cách 1
+var greeting = `Xin chào ${name}! Bạn ${age} tuổi.`;
+
+// Cách 2
+var url = `https://api.example.com/users/${userId}/orders?page=${page}`;
+
+// Cách 3
+var html = `
+<div class="card">
+    <h2>${title}</h2>
+    <p>${description}</p>
+    <span>Giá: ${price}đ</span>
+</div>
+`;
+```
