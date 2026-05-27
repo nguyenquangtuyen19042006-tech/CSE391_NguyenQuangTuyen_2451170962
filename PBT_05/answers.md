@@ -366,3 +366,20 @@ Có thể compile bằng:
 - Vite
 - Webpack
 - npm sass
+
+## Bài B3 — SCSS Refactor
+
+### Compile SCSS → CSS
+Lệnh này dùng để biên dịch file style.scss
+thành file style.css.
+
+scss/style.scss = file SCSS nguồn
+style.css = file CSS sau khi compile
+#### Compile một lần
+
+```bash
+sass scss/style.scss style.css
+Lệnh này giúp tự động compile mỗi khi lưu file SCSS.
+
+Khi sửa SCSS và nhấn Ctrl + S,
+file CSS sẽ tự cập nhật.

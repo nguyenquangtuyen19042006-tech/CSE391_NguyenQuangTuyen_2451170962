@@ -1,0 +1,155 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:$font-primary;
+    background:$bg-color;
+    color:$text-color;
+}
+
+/* HEADER */
+.header{
+    background:$primary-color;
+    color:$white;
+
+    padding:$spacing-md;
+
+    @include flex-center;
+    justify-content:space-between;
+
+    .logo{
+        font-size:24px;
+        font-weight:bold;
+    }
+
+    .nav{
+
+        display:none;
+
+        a{
+            color:$white;
+            text-decoration:none;
+            margin-left:$spacing-md;
+
+            &:hover{
+                color:$secondary-color;
+            }
+        }
+    }
+
+    .hamburger{
+        font-size:28px;
+        cursor:pointer;
+    }
+}
+
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:$spacing-lg;
+
+    padding:$spacing-lg;
+}
+
+/* CARD */
+.card{
+
+    background:$white;
+    border-radius:$radius;
+    overflow:hidden;
+
+    transition:all 0.3s ease;
+
+    @include card-shadow;
+
+    .card-image{
+
+        overflow:hidden;
+
+        img{
+            width:100%;
+            display:block;
+            transition:0.3s;
+        }
+    }
+
+    .card-title{
+        font-size:22px;
+        margin-bottom:$spacing-sm;
+    }
+
+    .card-content{
+        padding:$spacing-md;
+    }
+
+    button{
+        background:$primary-color;
+        color:$white;
+
+        border:none;
+        padding:$spacing-sm $spacing-md;
+
+        cursor:pointer;
+        border-radius:6px;
+
+        transition:0.3s;
+
+        &:hover{
+            background:$secondary-color;
+            transform:scale(1.05);
+        }
+    }
+
+    &:hover{
+        transform:translateY(-8px);
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+        img{
+            transform:scale(1.1);
+        }
+    }
+
+    &.featured{
+        border:3px solid $secondary-color;
+    }
+}
+
+/* TABLET */
+@include respond-to(tablet){
+
+    body{
+        font-size:18px;
+    }
+
+    .header{
+
+        .nav{
+            display:flex;
+        }
+
+        .hamburger{
+            display:none;
+        }
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* DESKTOP */
+@include respond-to(desktop){
+
+    body{
+        font-size:20px;
+    }
+
+    .products{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
