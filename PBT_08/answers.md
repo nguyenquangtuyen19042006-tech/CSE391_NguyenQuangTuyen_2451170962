@@ -154,3 +154,159 @@ Nên in ra:
 * **var** dùng chung một biến trong vòng lặp ⇒ `3 3 3`.
 * **let** tạo biến mới cho mỗi lần lặp ⇒ `0 1 2`.
 
+
+## Câu A3
+```js
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// 1. Lấy các số chẵn là
+nums.filter(n => n % 2 === 0);
+
+// 2. Nhân mỗi số với 3
+nums.map(n => n * 3);
+// 3. Tính tổng tất cả
+nums.reduce((sum, n) => sum + n, 0);
+// 4. Tìm số đầu tiên > 7
+nums.find(n => n > 7);
+// 5. Kiểm tra CÓ số > 10 không
+nums.some(n => n > 10);
+// 6. Kiểm tra TẤT CẢ đều > 0
+nums.every(n => n > 0);
+// 7. Tạo mảng "Số X là [chẵn/lẻ]"
+nums.map(n => `Số ${n} là ${n % 2 === 0 ? "chẵn" : "lẻ"}`);
+// 8. Đảo ngược mảng (không mutate gốc)
+[...nums].reverse();
+```
+**Kết quả:**
+
+1. `[2, 4, 6, 8, 10]`
+2. `[3, 6, 9, 12, 15, 18, 21, 24, 27, 30]`
+3. `55`
+4. `8`
+5. `false`
+6. `true`
+7. `["Số 1 là lẻ", "Số 2 là chẵn", ..., "Số 10 là chẵn"]`
+8. `[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]`
+
+
+## Câu A4
+
+#### Destructuring
+
+```js id="9imrz3"
+const { name, price, specs: { ram, color } } = product;
+
+console.log(name, price, ram, color);
+```
+
+Output:
+
+```js id="8cy9x2"
+iPhone 16 25990000 8 Titan
+```
+
+---
+
+```js id="1g6jlwm"
+console.log(specs);
+```
+
+Output:
+
+```js id="u9h8te"
+ReferenceError: specs is not defined
+```
+
+Vì chỉ destructure lấy `ram` và `color`, không tạo biến `specs`.
+
+---
+
+#### Spread
+
+```js id="9zdny7"
+const updated = { ...product, price: 23990000, sale: true };
+```
+
+```js id="6c0h6v"
+console.log(updated.price);
+```
+
+Output:
+
+```js id="8x2uzc"
+23990000
+```
+
+```js id="ib8hfb"
+console.log(updated.sale);
+```
+
+Output:
+
+```js id="0wl8ur"
+true
+```
+
+```js id="0l0m0t"
+console.log(product.price);
+```
+
+Output:
+
+```js id="x2pjvr"
+25990000
+```
+
+Đối tượng gốc **không bị thay đổi**.
+
+---
+
+#### Spread Gotcha
+
+```js id="jw8t31"
+const copy = { ...product };
+copy.specs.ram = 16;
+
+console.log(product.specs.ram);
+```
+
+Output:
+
+```js id="syri7w"
+16
+```
+
+### Tại sao?
+
+Spread (`...`) chỉ **copy nông (shallow copy)**.
+
+```js id="y9ewvt"
+product.specs === copy.specs
+// true
+```
+
+`product.specs` và `copy.spec` cùng trỏ tới một object con trong bộ nhớ.
+
+Khi:
+
+```js id="c8mf6w"
+copy.specs.ram = 16;
+```
+
+thì object `specs` chung bị sửa nên:
+
+```js id="ppxtk6"
+product.specs.ram // 16
+```
+### Kết luận
+
+| Lệnh                                   | Output                       |
+| -------------------------------------- | ---------------------------- |
+| `console.log(name, price, ram, color)` | `iPhone 16 25990000 8 Titan` |
+| `console.log(specs)`                   | `ReferenceError`             |
+| `console.log(updated.price)`           | `23990000`                   |
+| `console.log(updated.sale)`            | `true`                       |
+| `console.log(product.price)`           | `25990000`                   |
+| `console.log(product.specs.ram)`       | `16`                         |
+
+
