@@ -240,7 +240,7 @@ Ví dụ:
 5 == "5"
 ```
 
-→ `"5"` bị ép thành number.
+→ `"5"` bị ép thành từ chuỗi thành number.
 
 ---
 
@@ -421,7 +421,7 @@ for (let i = 0; i < 5; i++) {
 
 ---
 
-# Code đã sửa
+# Code đã sửa thành
 
 ```js id="v8z2yc"
 function tinhGiaGiamGia(giaBan, phanTramGiam) {

@@ -50,7 +50,7 @@
 
 ## Tại sao không cần viết `col-sm-12`?
 
-* Vì Bootstrap mặc định:
+* Vì Bootstrap mặc định như vậy:
 
   * Nếu chưa có class nhỏ hơn thì box tự chiếm 12 cột.
 * Nên mobile tự động full width rồi.
@@ -214,7 +214,7 @@ sass style.scss style.css
 
 # Khi nên dùng Bootstrap
 
-* Làm nhanh.
+* Làm nhanh hơn.
 * Landing page.
 * Admin dashboard.
 * Prototype.
