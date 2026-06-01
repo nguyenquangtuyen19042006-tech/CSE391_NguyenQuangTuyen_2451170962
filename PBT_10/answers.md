@@ -146,3 +146,144 @@ async function getData() {
 * Dễ đọc hơn.
 * Tránh callback hell.
 * Xử lý lỗi bằng `try...catch` thuận tiện.
+
+# Phần C
+
+## Câu C1 — Error Handling Strategy
+
+**1. Network Error (mất mạng)**
+
+* Hiện thông báo lỗi.
+* Cho phép người dùng Retry.
+
+```js
+catch(error){
+    alert("Không có kết nối mạng");
+}
+```
+
+**2. API Error**
+
+* `404`: Không tìm thấy dữ liệu.
+* `500`: Lỗi máy chủ.
+* `429`: Quá nhiều request, thử lại sau.
+
+**3. Timeout (>10s)**
+
+```js
+async function fetchWithTimeout(url, ms = 10000){
+    const controller = new AbortController();
+
+    setTimeout(() => controller.abort(), ms);
+
+    return fetch(url,{
+        signal: controller.signal
+    });
+}
+```
+
+**4. Retry Logic (3 lần)**
+
+```js
+async function fetchWithRetry(url, maxRetries = 3){
+
+    for(let i = 0; i < maxRetries; i++){
+
+        try{
+            return await fetch(url);
+        }catch(error){
+
+            if(i === maxRetries - 1){
+                throw error;
+            }
+        }
+    }
+}
+```
+
+**vậy là**
+
+* Mất mạng → báo lỗi + Retry.
+* 404 → không tìm thấy dữ liệu.
+* 500 → lỗi server.
+* 429 → chờ rồi gửi lại request.
+* Timeout → hủy request sau 10 giây.
+* Retry → thử lại tối đa 3 lần.
+
+
+## Câu C2 — Promise.all vs Promise.allSettled vs Promise.race vs Promise.any
+
+| Method          | Khi nào resolve?            | Khi nào reject?       | Use case                             |
+| --------------- | --------------------------- | --------------------- | ------------------------------------ |
+| `.all()`        | Tất cả Promise thành công   | Chỉ cần 1 Promise lỗi | Load nhiều dữ liệu bắt buộc          |
+| `.allSettled()` | Tất cả Promise hoàn thành   | Không reject          | Dashboard nhiều API độc lập          |
+| `.race()`       | Promise đầu tiên hoàn thành | Promise đầu tiên lỗi  | Timeout request                      |
+| `.any()`        | Promise đầu tiên thành công | Tất cả Promise lỗi    | Lấy dữ liệu từ nhiều server dự phòng |
+
+---
+
+### 1. Promise.all()
+
+Load Users, Posts, Comments cùng lúc:
+
+```js id="ym7pcy"
+const [users, posts, comments] =
+await Promise.all([
+    fetch("/users").then(r => r.json()),
+    fetch("/posts").then(r => r.json()),
+    fetch("/comments").then(r => r.json())
+]);
+```
+
+---
+
+### 2. Promise.allSettled()
+
+Dashboard có API lỗi vẫn hiển thị API khác:
+
+```js id="gzxj0m"
+const results =
+await Promise.allSettled([
+    fetch("/weather"),
+    fetch("/news"),
+    fetch("/users")
+]);
+```
+
+---
+
+### 3. Promise.race()
+
+Timeout sau 5 giây:
+
+```js id="s96v9t"
+await Promise.race([
+    fetch("/api/data"),
+    new Promise((_, reject) =>
+        setTimeout(() =>
+            reject("Timeout"), 5000)
+    )
+]);
+```
+
+---
+
+### 4. Promise.any()
+
+Lấy dữ liệu từ server nhanh nhất:
+
+```js id="c2jckg"
+const data =
+await Promise.any([
+    fetch("server1/api"),
+    fetch("server2/api"),
+    fetch("server3/api")
+]);
+```
+
+### Tóm tắt
+
+* **all()**: Cần tất cả thành công.
+* **allSettled()**: Muốn biết kết quả từng Promise.
+* **race()**: Lấy Promise hoàn thành đầu tiên.
+* **any()**: Lấy Promise thành công đầu tiên.
