@@ -1,0 +1,48 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    padding:20px;
+    background:#f5f5f5;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#refreshBtn{
+    padding:10px 15px;
+    margin-bottom:20px;
+}
+
+#loading{
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+#time{
+    margin-bottom:20px;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    min-height:250px;
+}
+
+.card img{
+    max-width:100%;
+    border-radius:8px;
+}
