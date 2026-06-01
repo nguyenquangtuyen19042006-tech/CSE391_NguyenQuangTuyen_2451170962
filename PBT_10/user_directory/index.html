@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>User Directory CRUD</h1>
+
+        <div class="form">
+            <input type="text" id="nameInput" placeholder="Tên">
+            <input type="email" id="emailInput" placeholder="Email">
+            <button id="saveBtn">Lưu</button>
+        </div>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm theo tên hoặc email..."
+        >
+
+        <div id="loading"></div>
+
+        <div id="userList"></div>
+
+    </div>
+
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>

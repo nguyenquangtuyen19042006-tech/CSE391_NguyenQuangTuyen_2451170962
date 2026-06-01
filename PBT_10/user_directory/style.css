@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    flex: 1;
+}
+
+button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#searchInput {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin-bottom: 5px;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.actions button {
+    margin-right: 5px;
+}
+
+.skeleton {
+    height: 80px;
+    background: #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.toast {
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.success {
+    background: green;
+}
+
+.error {
+    background: crimson;
+}
