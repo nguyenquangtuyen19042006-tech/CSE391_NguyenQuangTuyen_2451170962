@@ -90,3 +90,59 @@ if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
 }
 ```
+## Câu A3 — Promise States
+
+### Sơ đồ trạng thái Promise
+
+```text
+          Pending
+         /       \
+        /         \
+Fulfilled       Rejected
+(resolve)        (reject)
+```
+
+* **Pending**: đang chờ xử lý.
+* **Fulfilled**: thành công (`resolve()`).
+* **Rejected**: thất bại (`reject()`).
+
+---
+
+#### Callback Hell là gì?
+
+Là tình trạng callback lồng nhiều tầng gây code khó đọc, khó bảo trì.
+
+#### Ví dụ 4 cấp Callback Hell
+
+```js
+getUser(function(user) {
+    getPosts(user.id, function(posts) {
+        getComments(posts[0].id, function(comments) {
+            getLikes(comments[0].id, function(likes) {
+                console.log(likes);
+            });
+        });
+    });
+});
+```
+
+---
+
+#### Refactor bằng async/await
+
+```js
+async function getData() {
+    const user = await getUser();
+    const posts = await getPosts(user.id);
+    const comments = await getComments(posts[0].id);
+    const likes = await getLikes(comments[0].id);
+
+    console.log(likes);
+}
+```
+
+#### Ưu điểm async/await
+
+* Dễ đọc hơn.
+* Tránh callback hell.
+* Xử lý lỗi bằng `try...catch` thuận tiện.
