@@ -49,3 +49,44 @@ console.log("4 - End");
 * **Microtask Queue**: Chứa `Promise.then()`, `catch()`, `finally()`. Ưu tiên cao hơn.
 * **Macrotask Queue**: Chứa `setTimeout()`, `setInterval()`, I/O,...
 
+## Câu A2 — Fetch API
+
+### `await fetch(...)`
+
+* `fetch()` trả về `Promise<Response>`.
+* Dùng `await` để chờ request hoàn thành và lấy đối tượng `Response`.
+
+### `response.ok`
+
+* `true` khi status từ **200–299**.
+* `false` khi request lỗi HTTP.
+
+Ví dụ:
+
+* `404` Not Found
+* `401` Unauthorized
+* `500` Internal Server Error
+
+### `response.json()`
+
+* Chuyển dữ liệu JSON thành object JavaScript.
+* `json()` trả về Promise nên cần `await` lần nữa.
+
+### `try...catch`
+
+Bắt được:
+
+* Network error (mất mạng, DNS lỗi,...)
+* JSON parse error
+* Lỗi tự `throw`
+
+Không tự bắt:
+
+*  404, 401, 500 vì `fetch()` vẫn thành công về mặt kết nối.
+* Muốn vào `catch` phải tự kiểm tra:
+
+```js
+if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+}
+```
